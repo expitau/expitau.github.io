@@ -35,17 +35,17 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2.4.0
         with:
-          version: '8.14.1'
-      # - name: Install dependencies and build
-      #   working-directory: website
-      #   run: |
-      #     pnpm install
-      #     pnpm build
+          version: '9.1.0'
+      - name: Install dependencies and build
+        working-directory: blog
+        run: |
+          pnpm install
+          pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist folder
-          path: example/dist
+          path: blog/dist
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
