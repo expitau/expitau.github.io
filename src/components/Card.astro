@@ -1,0 +1,50 @@
+---
+// Card.astro
+const { href } = Astro.props;
+---
+
+<a class="card-wrapper" href={href}>
+    <div class="card">
+        <slot />
+    </div>
+</a>
+
+<style>
+    .card-wrapper {
+        width: 100%;
+        border-radius: 10px;
+        padding: 2px;
+        text-decoration: none;
+    }
+
+    .card-wrapper:hover {
+        background: linear-gradient(
+            113.38deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 255, 255, 0.05) 75%
+        );
+    }
+
+    .card {
+        background: linear-gradient(
+            113.38deg,
+            var(--background-highlight-2) 0%,
+            var(--background-highlight) 75%
+        );
+        box-sizing: border-box;
+        position: relative;
+        backdrop-filter: blur(15px);
+        border-radius: 10px;
+        margin: 0;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .card:hover {
+        border-radius: 10px;
+    }
+</style>

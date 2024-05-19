@@ -14,7 +14,7 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} - expitau.com</title>
+		<title>expitau - {title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -129,44 +129,28 @@ const { title } = Astro.props;
 		margin: 0;
 	}
 
-	a {
-		font-weight: 500;
+	p a {
 		color: var(--text);
+		font-weight: bold;
 		text-decoration: none;
-		cursor: pointer;
 	}
 
-	a:hover {
+	p a:hover {
 		text-decoration: underline;
-		color: var(--accent);
-		transition: color var(--transition-s) ease;
 	}
 
-	a.hyperlink {
-		text-decoration: none;
-		border-radius: 0.3rem;
-		font-weight: normal;
+	.button {
+		background: var(--background-highlight-2);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem 2rem;
+		border-radius: 2rem;
 		color: var(--text);
-		display: flex;
-		flex-direction: row;
-		gap: 0.5rem;
-		width: fit-content;
-		margin: 0;
-		align-items: center;
-	}
-
-	a.hyperlink:hover {
-		color: var(--accent);
-		transform: translate(0, -5%);
-		transition: var(--transition-s) ease;
-	}
-
-	a.link {
-		color: var(--accent);
-		align-items: center;
-		font-weight: normal;
-		display: flex;
-		flex-direction: row;
+		text-decoration: none;
+		font-weight: bold;
+		/* border: 1px solid var(--text-secondary); */
 	}
 
 	.sr-only {
@@ -185,17 +169,22 @@ const { title } = Astro.props;
 </style>
 <style is:global>
 	:root {
-		--background: #0f172a;
-		--text: #e1e7f0;
-		--text-secondary: #b4bfcf;
+		--background: #111111;
+		--background-highlight: #181818;
+		--background-highlight-2: #222222;
+		--text: #ffffff;
+		--text-secondary: #cfcfcf;
 		--transition-s: 0.1s;
-		--accent: #5eead4;
-		--accent-secondary: #5eead450;
 		color-scheme: dark;
 	}
 	html {
 		font-family: "Inter", sans-serif;
-		background: var(--background);
+		background: linear-gradient(
+			to right,
+			var(--background),
+			var(--background-highlight) 50%,
+			var(--background)
+		);
 	}
 	body {
 		margin: 0;
@@ -225,14 +214,17 @@ const { title } = Astro.props;
 	}
 	#blob {
 		position: absolute;
-		background-color: white;
-		height: 500px;
-		aspect-ratio: 1.5;
+		height: 1000px;
+		aspect-ratio: 1;
 		left: 50%;
 		top: 50%;
 		translate: -50% -50%;
 		border-radius: 50%;
-		background: linear-gradient(0.25turn, #222d46, #0f1e42);
+		background: radial-gradient(
+			ellipse 100% 140%,
+			var(--background-highlight),
+			transparent 30%
+		);
 		animation: rotate 10s linear infinite;
 		z-index: 1;
 	}
@@ -240,7 +232,6 @@ const { title } = Astro.props;
 		height: 100%;
 		width: 100%;
 		position: absolute;
-		backdrop-filter: blur(200px);
 		z-index: 2;
 	}
 
