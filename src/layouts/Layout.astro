@@ -60,6 +60,7 @@ const { title } = Astro.props;
 <style is:global>
 	main {
 		padding-inline: 24rem;
+		padding-bottom: 8rem;
 	}
 
 	@media (max-width: 1600px) {
@@ -87,24 +88,22 @@ const { title } = Astro.props;
 	}
 	h1 {
 		font-weight: 700;
-		/* letter-spacing: -1px; */
 		font-size: 48px;
-		color: var(--text);
-		margin: 4rem 0 0.5rem 0;
 	}
 
 	h2 {
 		font-weight: 600;
 		font-size: 24px;
-		color: var(--text);
-		margin: 4rem 0 0.5rem 0;
 	}
 
 	h3 {
 		font-weight: 500;
 		font-size: 18px;
+	}
+
+	h1, h2, h3 {
 		color: var(--text);
-		margin: 2rem 0 0.5rem 0;
+		margin: 0;
 	}
 
 	strong {
@@ -115,9 +114,16 @@ const { title } = Astro.props;
 	p {
 		color: var(--text-secondary);
 		line-height: 1.5em;
-		margin-top: 0;
+		margin: 0;
 		letter-spacing: 0.01em;
 		font-weight: 400;
+	}
+
+	br {
+		content: '';
+		display: block;
+		font-size: 1em;
+		margin-top: 2rem;
 	}
 
 	img {
@@ -129,13 +135,13 @@ const { title } = Astro.props;
 		margin: 0;
 	}
 
-	p a {
+	a {
 		color: var(--text);
 		font-weight: bold;
 		text-decoration: none;
 	}
 
-	p a:hover {
+	a:hover {
 		text-decoration: underline;
 	}
 

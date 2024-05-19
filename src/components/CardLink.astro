@@ -1,28 +1,41 @@
 ---
 // Card.astro
-const { href } = Astro.props;
+const { href, style } = Astro.props;
 ---
 
 <a class="card-wrapper" href={href}>
-    <div class="card">
+    <div class="card" style={style}>
         <slot />
     </div>
 </a>
 
 <style>
     .card-wrapper {
-        width: 100%;
-        border-radius: 10px;
-        padding: 2px;
+        position: relative;
         text-decoration: none;
+        padding: 2px;
     }
 
-    .card-wrapper:hover {
+    .card-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        padding: 2px;
         background: linear-gradient(
             113.38deg,
             rgba(255, 255, 255, 0.2) 0%,
             rgba(255, 255, 255, 0.05) 75%
         );
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .card-wrapper:hover::before {
+        opacity: 1;
     }
 
     .card {
@@ -37,14 +50,5 @@ const { href } = Astro.props;
         border-radius: 10px;
         margin: 0;
         padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .card:hover {
-        border-radius: 10px;
     }
 </style>
