@@ -86,6 +86,7 @@ const { title } = Astro.props;
 			padding-inline: 1rem;
 		}
 	}
+
 	h1 {
 		font-weight: 700;
 		font-size: 48px;
@@ -101,7 +102,9 @@ const { title } = Astro.props;
 		font-size: 18px;
 	}
 
-	h1, h2, h3 {
+	h1,
+	h2,
+	h3 {
 		color: var(--text);
 		margin: 0;
 	}
@@ -120,7 +123,7 @@ const { title } = Astro.props;
 	}
 
 	br {
-		content: '';
+		content: "";
 		display: block;
 		font-size: 1em;
 		margin-top: 2rem;

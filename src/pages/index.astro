@@ -23,6 +23,14 @@ import Card from "../components/CardLink.astro";
 			height: calc(100vh - 12rem - 12rem);
 		}
 
+		#main-title h1 {
+			font-size: min(11vw, 48px);
+		}
+
+		#main-title h2 {
+			font-size: min(5.5vw, 24px);
+		}
+
 		#main-content {
 			flex: 1;
 			padding: 10rem 0;
@@ -67,6 +75,8 @@ import Card from "../components/CardLink.astro";
 			transition: color var(--transition-s) ease background-color
 				var(--transition-s) ease;
 			text-decoration: none;
+			font-weight: normal;
+			font-size: min(4vw, 16px);
 		}
 
 		#main-nav a:hover {
@@ -117,33 +127,6 @@ import Card from "../components/CardLink.astro";
 			align-items: flex-start;
 			gap: 0.5rem;
 		}
-
-		/* 
-		#main-projects {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-		}
-
-		#main-projects > * {
-			display: flex;
-			text-align: left;
-			flex-direction: row;
-			align-items: center;
-			gap: 2rem;
-		}
-
-		#main-projects > * > *:first-child {
-			width: calc(70% - 1rem);
-		}
-
-		#main-projects > * > img:first-child {
-			width: calc(30% - 1rem);
-			height: fit-content;
-			object-fit: cover;
-			aspect-ratio: 1.6;
-			margin: 0.3rem;
-		} */
 
 		main {
 			padding: 0 10%;
@@ -210,13 +193,7 @@ import Card from "../components/CardLink.astro";
 			}
 
 			#main-nav a > :first-child {
-				display: none !important;
-			}
-		}
-
-		@media (max-width: 480px) {
-			#main-title {
-				padding: 4rem 0 0 0;
+				display: none;
 			}
 		}
 	</style>
@@ -325,7 +302,7 @@ import Card from "../components/CardLink.astro";
 						>my GitHub</a
 					>.
 				</p>
-				<br>
+				<br />
 				<h2>Projects</h2>
 				<div id="main-projects">
 					{
@@ -350,16 +327,18 @@ import Card from "../components/CardLink.astro";
 						))
 					}
 				</div>
-				<br>
+				<br />
 				<h2>Blog</h2>
 				<p>Coming soon!</p>
-				<br>
+				<br />
 				<h2>Resume</h2>
 				<p>
 					Interested in hiring me? Check out my resume! The following
 					is redacted for privacy, contact me for the full version.
 				</p>
-				<div style="display: flex; flex-direction: row; gap: 2rem; justify-content: center; margin-top: 1rem">
+				<div
+					style="display: flex; flex-direction: row; gap: 2rem; justify-content: center; margin-top: 1rem"
+				>
 					<a class="button" href="/resume/resume.pdf">
 						Download PDF
 					</a>
