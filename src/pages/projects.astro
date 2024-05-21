@@ -1,27 +1,16 @@
 ---
+import BackButton from "../components/BackButton.astro";
 import CardLink from "../components/CardLink.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/main.astro";
 
 import { projects } from "../util/content";
 
-function formatDate(d) {
-    if (!d) return '';
-    const formatter = new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short'
-    })
-    return formatter.format(new Date(d))
-}
+import { formatDate } from "../util/helpers";
 ---
 
 <Layout title="Projects">
     <style>
-        main {
-            padding-top: 4rem;
-        }
-
         #project-list {
-            list-style-type: none;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
@@ -32,46 +21,31 @@ function formatDate(d) {
             margin: 1rem 0 0.5rem 0;
         }
     </style>
-    <main>
-        <a
-            href="/"
-            style="display: flex; flex-direction: row; align-items: center; gap: 1rem;"
-            ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                width="24px"
-                height="24px"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
-            </svg>
-            Back home</a
-        >
-        <h1 style="text-align: center;">Projects</h1>
-        <p style="text-align: center;">
-            Here are a few of my completed personal projects, you can find more
-            on my <a href="https://github.com/expitau">Github</a>
-        </p>
-        <div id="project-list" style="margin-top: 4rem">
-            {
-                projects.map((project) => {
-                    return (
-                        <CardLink href={project.data.url} style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem">
-                                <h3 style="margin: 0">{project.data.title}</h3>
-                                <p style="margin: 0; padding-left: 1rem">{formatDate(project.data.pubDate)}</p>
-                            <p>
-                                {project.data.longDescription ||
-                                    project.data.description}
-                            </p>
-                        </CardLink>
-                    );
-                })
-            }
-        </div>
-    </main>
+    <BackButton />
+    <h1 style="text-align: center;">Projects</h1>
+    <p style="text-align: center;">
+        Here are a few of my completed personal projects, you can find more on
+        my <a href="https://github.com/expitau">Github</a>
+    </p>
+    <div id="project-list" style="margin-top: 4rem">
+        {
+            projects.map((project) => {
+                return (
+                    <CardLink
+                        href={project.data.url}
+                        style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem"
+                    >
+                        <h3 style="margin: 0">{project.data.title}</h3>
+                        <p style="margin: 0; padding-left: 1rem">
+                            {formatDate(project.data.pubDate)}
+                        </p>
+                        <p>
+                            {project.data.longDescription ||
+                                project.data.description}
+                        </p>
+                    </CardLink>
+                );
+            })
+        }
+    </div>
 </Layout>

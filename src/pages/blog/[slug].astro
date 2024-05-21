@@ -1,0 +1,29 @@
+---
+import BackButton from "../../components/BackButton.astro";
+import Layout from "../../layouts/main.astro";
+import Panel from "../../components/Panel.astro";
+import { formatDate } from "../../util/helpers";
+
+import { blog } from "../../util/content";
+
+export function getStaticPaths() {
+    return blog.map((post) => {return { params: { slug: post.slug } }})
+}
+
+const { slug } = Astro.params;
+const post = blog.find((post) => post.slug === slug);
+const { Content } = await post.render()
+---
+
+<Layout title="Blog">
+    <BackButton href="/blog" title="Blog" />
+    <Panel>
+        <h1 style="text-align: center; margin-bottom: 0">{post.data.title}</h1>
+        <h2 style="text-align: center; margin-top: 0">{formatDate(post.data.pubDate, true)}</h2>
+        <br>
+        <div style="padding-inline: 2rem">
+            <Content />
+        </div>
+        <br>
+    </Panel>
+</Layout>

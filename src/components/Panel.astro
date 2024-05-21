@@ -1,0 +1,23 @@
+---
+const { style } = Astro.props;
+---
+
+<div class="card" style={style}>
+    <slot />
+</div>
+
+<style>
+    .card {
+        background: linear-gradient(
+            113.38deg,
+            var(--background-highlight-2) 0%,
+            var(--background-highlight) 75%
+        );
+        box-sizing: border-box;
+        position: relative;
+        backdrop-filter: blur(15px);
+        border-radius: 10px;
+        margin: 0;
+        padding: 2rem;
+    }
+</style>

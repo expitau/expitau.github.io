@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Panel from "../components/Panel.astro";
+import Layout from "../layouts/main.astro";
 ---
 
 <Layout title="About">
@@ -17,38 +18,28 @@ import Layout from "../layouts/Layout.astro";
         p {
             margin-bottom: 1rem;
         }
-        h1 {
-            margin-bottom: 1rem;
-        }
-        h2 {
-            margin-top: 2rem;
-        }
-        h3 {
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
     </style>
-    <main>
-        <a
-            href="/"
-            style="display: flex; flex-direction: row; align-items: center; gap: 1rem;"
-            ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                width="24px"
-                height="24px"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
-            </svg>
-            Back home</a
+    <a
+        href="/"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem;"
+        ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            width="24px"
+            height="24px"
         >
-        <h1>About me</h1>
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
+        </svg>
+        Back home</a
+    >
+    <Panel style="padding-inline: 8%; margin-top: 2rem">
+        <h1 style="padding-top: 2rem; padding-bottom: 1rem">About me</h1>
         <h2>Hello!</h2>
         <p>
             My name is Nathan, I'm a highly motivated software developer with
@@ -229,7 +220,8 @@ import Layout from "../layouts/Layout.astro";
                 my own!
             </li>
             <li>
-                <strong>Color Picker</strong> -- great, works identical to the <a
+                <strong>Color Picker</strong> -- great, works identical to the
+                <a
                     href="https://learn.microsoft.com/en-us/windows/powertoys/color-picker"
                     >Powertoy on Windows</a
                 >
@@ -245,7 +237,11 @@ import Layout from "../layouts/Layout.astro";
         </ul>
 
         <!-- Photo of laptop -->
-        <img src="/laptop-on-desk.jpg" style="margin-top: 2rem" alt="Laptop on desk" />
+        <img
+            src="/laptop-on-desk.jpg"
+            style="margin-top: 2rem"
+            alt="Laptop on desk"
+        />
         <p style="width: 100%; text-align: center">Photo credit: Phil Barker</p>
         <h3 id="hardware">Hardware</h3>
         <p>
@@ -281,5 +277,5 @@ import Layout from "../layouts/Layout.astro";
             use on occasion. They're cheap, sound great, and are reasonably comfortable
             (though I haven't used many other earbuds).
         </p>
-    </main>
+    </Panel>
 </Layout>

@@ -59,39 +59,81 @@ const { title } = Astro.props;
 			<div id="blob"></div>
 			<div id="blur"></div>
 		</div>
-		<slot />
+		<main>
+			<slot />
+		</main>
 	</body>
 </html>
 <style is:global>
+	:root {
+		--background: #111111;
+		--background-highlight: #1a1a1a;
+		--background-highlight-2: #252525;
+		--text: #ffffff;
+		--text-secondary: #cfcfcf;
+		--transition-s: 0.1s;
+		color-scheme: dark;
+	}
+	html {
+		font-family: "Inter", sans-serif;
+		background: linear-gradient(
+			to right,
+			var(--background),
+			var(--background-highlight) 50%,
+			var(--background)
+		);
+	}
+
+	body {
+		margin: 0;
+		height: 100vh;
+		color: var(--text-secondary);
+	}
+
 	main {
-		padding-inline: 24rem;
-		padding-bottom: 8rem;
+		padding: 6rem 10%;
 	}
 
-	@media (max-width: 1600px) {
-		main {
-			padding-inline: 16rem;
-		}
+	code {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
 	}
 
-	@media (max-width: 1300px) {
-		main {
-			padding-inline: 8rem;
-		}
+	.button {
+		background: var(--background-highlight-2);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem 2rem;
+		border-radius: 2rem;
+		color: var(--text);
+		text-decoration: none;
+		font-weight: bold;
 	}
 
-	@media (max-width: 720px) {
-		main {
-			padding-inline: 6rem;
-		}
+	.sr-only {
+		border: 0;
+		padding: 0;
+		margin: 0;
+		position: absolute !important;
+		height: 1px;
+		width: 1px;
+		overflow: hidden;
+		clip: rect(1px 1px 1px 1px);
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		white-space: nowrap;
 	}
-
-	@media (max-width: 480px) {
-		main {
-			padding-inline: 1rem;
-		}
-	}
-
+</style>
+<style is:global>
 	h1 {
 		font-weight: 700;
 		font-size: 48px;
@@ -107,11 +149,12 @@ const { title } = Astro.props;
 		font-size: 18px;
 	}
 
-	h1,
-	h2,
-	h3 {
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+		/* border-bottom: 1px solid var(--text-secondary); */
 		color: var(--text);
-		margin: 0;
+		line-height: 1.25;
 	}
 
 	strong {
@@ -146,76 +189,19 @@ const { title } = Astro.props;
 	a {
 		color: var(--text);
 		font-weight: bold;
+		display: inline-block;
 		text-decoration: none;
+		transition:
+			transform var(--transition-s),
+			color var(--transition-s);
 	}
 
-	a:hover {
+	p a:hover {
 		text-decoration: underline;
-	}
-
-	.button {
-		background: var(--background-highlight-2);
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		padding: 1rem 2rem;
-		border-radius: 2rem;
-		color: var(--text);
-		text-decoration: none;
-		font-weight: bold;
-		/* border: 1px solid var(--text-secondary); */
-	}
-
-	.sr-only {
-		border: 0;
-		padding: 0;
-		margin: 0;
-		position: absolute !important;
-		height: 1px;
-		width: 1px;
-		overflow: hidden;
-		clip: rect(1px 1px 1px 1px);
-		clip: rect(1px, 1px, 1px, 1px);
-		clip-path: inset(50%);
-		white-space: nowrap;
+		transform: translateY(-0.2rem);
 	}
 </style>
-<style is:global>
-	:root {
-		--background: #111111;
-		--background-highlight: #181818;
-		--background-highlight-2: #222222;
-		--text: #ffffff;
-		--text-secondary: #cfcfcf;
-		--transition-s: 0.1s;
-		color-scheme: dark;
-	}
-	html {
-		font-family: "Inter", sans-serif;
-		background: linear-gradient(
-			to right,
-			var(--background),
-			var(--background-highlight) 50%,
-			var(--background)
-		);
-	}
-	body {
-		margin: 0;
-		height: 100vh;
-		color: var(--text-secondary);
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<style>
 	#background {
 		width: 100vw;
 		height: 100vh;

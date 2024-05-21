@@ -1,0 +1,48 @@
+---
+import BackButton from "../../components/BackButton.astro";
+import CardLink from "../../components/CardLink.astro";
+import Layout from "../../layouts/main.astro";
+
+import { blog } from "../../util/content";
+
+import { formatDate } from "../../util/helpers";
+---
+
+<Layout title="Blog">
+    <style>
+        #blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0;
+        }
+
+        #blog-list h3 {
+            margin: 1rem 0 0.5rem 0;
+        }
+    </style>
+    <BackButton />
+    <h1 style="text-align: center;">Blog</h1>
+    <p style="text-align: center;">
+        Here are a few articles I've written about things I think are worth
+        sharing
+    </p>
+    <div id="blog-list" style="margin-top: 4rem">
+        {
+            blog.map((post) => {
+                return (
+                    <CardLink
+                        href={"/blog/" + post.slug}
+                        style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem"
+                    >
+                        <h2 style="margin: 0">{post.data.title}</h2>
+                        <p style="margin: 0; padding-left: 1rem">
+                            {formatDate(post.data.pubDate)}
+                        </p>
+                        <p>{post.data.description}</p>
+                    </CardLink>
+                );
+            })
+        }
+    </div>
+</Layout>
