@@ -21,9 +21,9 @@ const { Content } = await post.render()
         <h1 style="text-align: center; margin-bottom: 0">{post.data.title}</h1>
         <h2 style="text-align: center; margin-top: 0">{formatDate(post.data.pubDate, true)}</h2>
         <br>
-        <div style="padding-inline: 2rem">
+        <article style="padding-inline: 2rem">
             <Content />
-        </div>
+        </article>
         <br>
     </Panel>
 </Layout>

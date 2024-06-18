@@ -76,7 +76,7 @@ Then open the input remapper tool.
 7. Click "Apply"
 8. Enable the "Autoload" toggle
 
-<img src="https://user-images.githubusercontent.com/84288806/280539862-654738d8-5384-4155-ac62-a835b366885e.png" width=600>
+<!-- <img src="https://user-images.githubusercontent.com/84288806/280539862-654738d8-5384-4155-ac62-a835b366885e.png" width=600> -->
 
 ### Getting speakers working
 
