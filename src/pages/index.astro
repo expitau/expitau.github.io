@@ -373,7 +373,7 @@ import { formatDate } from "../util/helpers";
 				{
 					blog.slice(0, 3).map((post) => (
 						<CardLink
-							href="/blog"
+							href={"/blog/" + post.slug}
 							style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem;"
 						>
 							<h3 style="margin: 0">{post.data.title}</h3>
