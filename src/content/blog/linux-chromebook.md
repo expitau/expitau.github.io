@@ -1,13 +1,11 @@
 ---
 title: 'Running Linux on a Chromebook'
-description: "A while ago I obtained a few dozen lightly-used Chromebooks from a business that didn't have a use for them anymore. Fortunately, I was able to figure how to flash CoreBoot onto them, unlocking the ability to install any Linux distribution, or even Windows, with only some minor tinkering."
+description: "Making chromebooks actually useful"
 pubDate: 'Jan 03 2024'
 tags: ['tutorial']
 ---
 
 A while ago I obtained a few dozen lightly-used Chromebooks from a business that didn't have a use for them anymore. While ChromeOS is *technically* a Linux distribution, it's heavily locked down and some apps that run natively on Linux don't behave well on it without subsystems. Fortunately, I was able to figure how to flash CoreBoot onto them, unlocking the ability to install any Linux distribution, or even Windows, with only some minor tinkering.
-
-<br>
 
 ## Table of contents
 - [Installation](#installation)
@@ -42,6 +40,7 @@ In order to make ChromeOS able to run commands as root (regardless of firmware p
 ### Flashing Coreboot
 
 To turn off firmware protections, we need to unplug the battery and boot when it's directly plugged in. Unscrew the bottom of the chromebook, and use a screwdriver to pry open the case. There is a rainbow ribbon cable connecting the battery to the motherboard. Unplug it, and plug in the charger. With the case open, power on the device, open the terminal, and run the [firmware utility script](https://mrchromebox.tech/#fwscript)
+
 ```bash
 cd
 curl -LO mrchromebox.tech/firmware-util.sh
