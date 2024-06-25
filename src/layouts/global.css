@@ -74,3 +74,27 @@ article .astro-code {
     padding: 1.5rem;
     border-radius: 0.5rem;
 }
+
+article blockquote {
+    /* background-color: #00000050; */
+    margin: 0;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.2rem 0.5rem 1rem;
+    border-left: 0.2rem solid var(--text-secondary);
+    /* border-radius: 0.5rem; */
+}
+
+article > * {
+    margin-bottom: 1.5rem;
+}
+
+article p:has(img) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+article p > img {
+    width: 80%
+}

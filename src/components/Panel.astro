@@ -8,16 +8,18 @@ const { style } = Astro.props;
 
 <style>
     .card {
-        background: linear-gradient(
+        /* background: linear-gradient(
             113.38deg,
             var(--background-highlight-2) 0%,
             var(--background-highlight) 75%
-        );
+        ); */
+        background-color: var(--background-highlight-2);
         box-sizing: border-box;
         position: relative;
         backdrop-filter: blur(15px);
         border-radius: 10px;
         margin: 0;
+        max-width: 70rem;
         padding: 2rem;
     }
 </style>

@@ -2,6 +2,7 @@
 import BackButton from "../../components/BackButton.astro";
 import Layout from "../../layouts/main.astro";
 import Panel from "../../components/Panel.astro";
+import Tag from "../../components/Tag.astro";
 import { formatDate } from "../../util/helpers";
 
 import { blog } from "../../util/content";
@@ -20,6 +21,9 @@ const { Content } = await post.render()
     <Panel>
         <h1 style="text-align: center; margin-bottom: 0">{post.data.title}</h1>
         <h2 style="text-align: center; margin-top: 0">{formatDate(post.data.pubDate, true)}</h2>
+        <div style="display: flex; flex-direction: row; justify-content: center;">
+            {post.data.tags && post.data.tags.map(tag => <Tag name={tag} />)}
+        </div>
         <br>
         <article style="padding-inline: 2rem">
             <Content />
