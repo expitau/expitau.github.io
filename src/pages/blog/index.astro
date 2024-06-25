@@ -27,13 +27,13 @@ import { formatDate } from "../../util/helpers";
         Here are a few articles I've written about things I think are worth
         sharing
     </p>
-    <div id="blog-list" style="margin-top: 4rem">
+    <div id="blog-list" style="margin-top: 4rem; width: 100%">
         {
             blog.map((post) => {
                 return (
                     <CardLink
                         href={"/blog/" + post.slug}
-                        style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem"
+                        style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem; width: 100%"
                     >
                         <h2 style="margin: 0">{post.data.title}</h2>
                         <p style="margin: 0; padding-left: 1rem">
