@@ -2,7 +2,7 @@
 title: 'Running Linux on a Chromebook'
 description: "Making chromebooks actually useful"
 pubDate: 'Jan 03 2024'
-tags: ['tutorial']
+tags: ['tutorial', 'tech']
 ---
 
 A while ago I obtained a few dozen lightly-used Chromebooks from a business that didn't have a use for them anymore. While ChromeOS is *technically* a Linux distribution, it's heavily locked down and some apps that run natively on Linux don't behave well on it without subsystems. Fortunately, I was able to figure how to flash CoreBoot onto them, unlocking the ability to install any Linux distribution, or even Windows, with only some minor tinkering.

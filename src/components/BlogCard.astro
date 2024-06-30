@@ -1,0 +1,51 @@
+---
+import { formatDate } from "../util/helpers";
+import CardLink from "./CardLink.astro";
+import Tag from "./Tag.astro";
+
+const { post } = Astro.props;
+---
+
+<style>
+    .card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "title date"
+            "description description";
+        gap: 0.5rem 0.7rem;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card h2 {
+        font-size: large;
+    }
+    @media (max-width: 600px) {
+        .card {
+            padding: 0.5rem;
+        }
+    }
+</style>
+<CardLink href={"/blog/" + post.slug}>
+    <div class="card">
+        <h2 style="grid-area: title; margin: 0;">
+            {post.data.title}&nbsp;
+            <span
+                style="display: inline-flex; flex-direction: row; gap: 0.5rem; align-items: center"
+            >
+                {
+                    post.data.tags &&
+                        post.data.tags.map((tag) => <Tag name={tag} />)
+                }
+            </span>
+        </h2>
+        <p style="grid-area: date; margin: 0; text-align: right">
+            {formatDate(post.data.pubDate)}
+        </p>
+        <p style="grid-area: description;">
+            {post.data.description}
+        </p>
+    </div>
+</CardLink>

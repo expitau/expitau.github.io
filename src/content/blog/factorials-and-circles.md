@@ -8,13 +8,13 @@ tags: ['opinion', 'math']
 Back in highschool, I discovered the magic of the Desmos graphing calculator. Being the nerdy tinkerer I was, I pushed this tool to its limits, making lots of fun graphs, even including a fully-playable version of pong. 
 
 <div class="embed">
-    <iframe src="https://www.desmos.com/calculator/zaeozsxl0q?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
+    <iframe src="https://www.desmos.com/calculator/zaeozsxl0q?embed" style="border: 1px solid #ccc" frameborder=0></iframe>
 </div>
 
 So when we learned about factorials in math class, one of the first things I did was plug it into Desmos to see what it looked like.
 
 <div class="embed">
-    <iframe src="https://www.desmos.com/calculator/kuim0f5olg?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
+    <iframe src="https://www.desmos.com/calculator/kuim0f5olg?embed" style="border: 1px solid #ccc" frameborder=0></iframe>
 </div>
 
 I was very suprised at what I got. I was expecting a pointwise function on every positive integer, but not only did I get rational numbers, the graph went crazy in the negatives!

@@ -3,6 +3,7 @@ import Layout from "../layouts/main.astro";
 import { projects, blog } from "../util/content";
 import CardLink from "../components/CardLink.astro";
 import { formatDate } from "../util/helpers";
+import BlogCard from "../components/BlogCard.astro";
 ---
 
 <Layout title="Home">
@@ -224,7 +225,7 @@ import { formatDate } from "../util/helpers";
 			}
 
 			#main-nav a > :first-child {
-				display: none;
+				display: none !important;
 			}
 		}
 
@@ -372,16 +373,7 @@ import { formatDate } from "../util/helpers";
 			>
 				{
 					blog.slice(0, 3).map((post) => (
-						<CardLink
-							href={"/blog/" + post.slug}
-							style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem;"
-						>
-							<h3 style="margin: 0">{post.data.title}</h3>
-							<p>{formatDate(post.data.pubDate)}</p>
-							<p style="margin-bottom: 0">
-								{post.data.description}
-							</p>
-						</CardLink>
+						<BlogCard post={post} />
 					))
 				}
 			</div>

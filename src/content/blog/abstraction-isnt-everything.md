@@ -2,7 +2,7 @@
 title: "Abstraction isn't everything"
 description: "When object-oriented programming fails"
 pubDate: 'Jun 26 2024'
-tags: ['opinion']
+tags: ['opinion', 'tech']
 ---
 
 I've worked on a number of codebases, some cleaner than others, but a common problem I've noted with many has been the overuse of abstraction. While undoubtedly an indispensible tool, and the basis for modern computing, many developers tend to reach for it too frequently.
