@@ -8,26 +8,60 @@ import { formatDate } from "../../util/helpers";
 import { blog } from "../../util/content";
 
 export function getStaticPaths() {
-    return blog.map((post) => {return { params: { slug: post.slug } }})
+    return blog.map((post) => {
+        return { params: { slug: post.slug } };
+    });
 }
 
 const { slug } = Astro.params;
 const post = blog.find((post) => post.slug === slug);
-const { Content } = await post.render()
+const { Content } = await post.render();
 ---
 
 <Layout title="Blog">
     <BackButton href="/blog" title="Blog" />
     <Panel>
         <h1 style="text-align: center; margin-bottom: 0">{post.data.title}</h1>
-        <h2 style="text-align: center; margin-top: 0">{formatDate(post.data.pubDate, true)}</h2>
-        <div style="display: flex; flex-direction: row; justify-content: center;">
-            {post.data.tags && post.data.tags.map(tag => <Tag name={tag} />)}
+        <h2 style="text-align: center; margin-top: 0">
+            {formatDate(post.data.pubDate, true)}
+        </h2>
+        <div
+            style="display: flex; flex-direction: row; justify-content: center; gap: 0.5rem"
+        >
+            {post.data.tags && post.data.tags.map((tag) => <Tag name={tag} />)}
         </div>
-        <br>
+        <br />
         <article style="padding-inline: 2rem">
             <Content />
         </article>
-        <br>
+        <br />
     </Panel>
 </Layout>
+<script is:inline>
+    console.log("Running");
+    // Get all elements with the class 'MathJax'
+    var mathJaxElements = document.querySelectorAll(".MathJax");
+
+    console.log(mathJaxElements);
+
+    mathJaxElements.forEach(function (element) {
+        // Get the parent node of the current element
+        var parent = element.parentNode;
+
+        // Get all child nodes of the parent node
+        var siblings = Array.prototype.slice.call(parent.childNodes);
+
+        // Check if there are any text nodes that are not empty
+        var hasTextSiblings = siblings.some(function (sibling) {
+            return (
+                sibling.nodeType === Node.TEXT_NODE &&
+                sibling.textContent.trim().length > 0
+            );
+        });
+
+        // If there are no text siblings, add the 'MathJax-block' class
+        if (!hasTextSiblings) {
+            element.classList.add("MathJax-block");
+        }
+    });
+</script>

@@ -9,6 +9,10 @@ export const projects = (await getCollection("projects"))
     .filter((p) => p.data.priority >= 0);
 
 export const blog = (await getCollection("blog"))
+    .sort(
+        (a, b) =>
+            b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+    )
 
 export default {
     projects: projects,

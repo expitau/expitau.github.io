@@ -1,7 +1,7 @@
 ---
 title: "Abstraction isn't everything"
 description: "When object-oriented programming fails"
-pubDate: 'Jan 03 2024'
+pubDate: 'Jun 26 2024'
 tags: ['opinion']
 ---
 

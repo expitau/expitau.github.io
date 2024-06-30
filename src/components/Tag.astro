@@ -4,12 +4,12 @@ const { name } = Astro.props;
 const colour = {
     "opinion": "#0284c755",
     "tutorial": "#16a34a55",
-}[name]
+}[name] ?? "#00000055";
 
 const fgColor = {
     "opinion": "#38bdf8",
     "tutorial": "#22c55e"
-}[name]
+}[name] ?? "#FFFFFF";
 ---
 
 <div style={{ backgroundColor: colour, color: fgColor }}>
