@@ -17,7 +17,14 @@ const { style } = Astro.props;
         backdrop-filter: blur(15px);
         border-radius: 10px;
         margin: 0;
-        padding: 2rem;
+        padding: 5%;
+        box-sizing: border-box;
         width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        .card {
+            padding: 0;
+        }
     }
 </style>
