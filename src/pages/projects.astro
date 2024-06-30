@@ -20,6 +20,13 @@ import { formatDate } from "../util/helpers";
         #project-list h3 {
             margin: 1rem 0 0.5rem 0;
         }
+        .card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-areas: "title date" "description description";
+            gap: 0.5rem;
+            padding: 1rem;
+        }
     </style>
     <BackButton />
     <h1 style="text-align: center;">Projects</h1>
@@ -31,18 +38,17 @@ import { formatDate } from "../util/helpers";
         {
             projects.map((project) => {
                 return (
-                    <CardLink
-                        href={project.data.url}
-                        style="display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; padding: 1.5rem"
-                    >
-                        <h3 style="margin: 0">{project.data.title}</h3>
-                        <p style="margin: 0; padding-left: 1rem">
-                            {formatDate(project.data.pubDate)}
-                        </p>
-                        <p>
-                            {project.data.longDescription ||
-                                project.data.description}
-                        </p>
+                    <CardLink href={project.data.url}>
+                        <div class="card">
+                            <h3 style="margin: 0; grid-area: title">{project.data.title}</h3>
+                            <p style="margin: 0; grid-area: date; text-align: right">
+                                {formatDate(project.data.pubDate)}
+                            </p>
+                            <p style="grid-area: description">
+                                {project.data.longDescription ||
+                                    project.data.description}
+                            </p>
+                        </div>
                     </CardLink>
                 );
             })
