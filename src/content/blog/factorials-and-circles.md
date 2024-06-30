@@ -78,7 +78,17 @@ $$\displaystyle dV = nCR^{n - 1}dR$$
 
 Here's the trick, we'll consider this weird integral
 
-$$\displaystyle \int_{-\infty}^\infty\int_{-\infty}^\infty\cdots\int_{-\infty}^\infty e^{-(x_1^2+x_2^2+\cdots+x_n^2)}dx_1dx_2\cdots dx_n = \int_{0}^\infty e^{-R^2}dV = nC\int_{0}^\infty e^{-R^2}R^{n - 1}dR$$
+$$\displaystyle \int_{-\infty}^\infty\int_{-\infty}^\infty\cdots\int_{-\infty}^\infty e^{-(x_1^2+x_2^2+\cdots+x_n^2)}dx_1dx_2\cdots dx_n = \int_{0}^\infty e^{-R^2}dV$$
+
+You can think of it as covering the space by summing over shells of $n$-dimensional spheres, instead of by integrating over each point individually. This works because our function $e^{-(x_1^2 + x_2^2 + \cdots + x_n^2)}$ has radial symmetry in all axis. For example, in two-dimensions we cover the space by integrating over all radii of circles.
+
+<div class="embed">
+    <iframe src="https://www.desmos.com/calculator/7xc0t09fbj?embed" style="border: 1px solid #ccc" frameborder=0></iframe>
+</div>
+
+Now substitute the $dV$, 
+
+$$\displaystyle = nC\int_{0}^\infty e^{-R^2}R^{n - 1}dR$$
 
 and use a change-of-variables
 
