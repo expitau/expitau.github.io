@@ -23,7 +23,7 @@ concurrency:
 
 env:
   PNPM_HOME: ~/.pnpm
-  PATH: ${{ env.PNPM_HOME }}:$PATH
+  PATH: ~/.pnpm:$PATH
 
 jobs:
   deploy:
