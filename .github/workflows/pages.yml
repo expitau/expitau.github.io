@@ -35,7 +35,7 @@ jobs:
       - name: Install pnpm
         run: |
           export PNPM_HOME=~/.pnpm
-          export PATH=$PNPM_HOME/bin:$PATH
+          export PATH=$PNPM_HOME:$PATH
           npx pnpm i -g pnpm@9.4.0
       - name: Install dependencies and build
         run: |
