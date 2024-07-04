@@ -21,10 +21,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-env:
-  PNPM_HOME: ~/.pnpm
-  PATH: ~/.pnpm:$PATH
-
 jobs:
   deploy:
     environment:
@@ -36,6 +32,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - name: Set environment variables
+        run: |
+          echo "export PNPM_HOME=$HOME/.pnpm" >> $GITHUB_ENV
+          echo "export PATH=$PNPM_HOME:$PATH" >> $GITHUB_ENV
       - name: Install pnpm
         run: |
           npx pnpm i -g pnpm@9.4.0
