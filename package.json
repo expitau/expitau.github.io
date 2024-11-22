@@ -8,11 +8,20 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "dev:resume": "live-server --port=5001 --open=resume/src --watch=resume",
+    "build:resume": "cd public/resume && node ../../resume/build.cjs"
   },
   "dependencies": {
     "astro": "^4.11.3",
+    "express": "^4.21.1",
+    "js-yaml": "^4.1.0",
+    "pdf-lib": "^1.17.1",
     "rehype-mathjax": "^6.0.0",
     "remark-math": "^6.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "puppeteer": "^23.8.0"
   }
 }

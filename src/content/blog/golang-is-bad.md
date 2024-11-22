@@ -1,7 +1,7 @@
 ---
 title: "Why I hate Go"
 description: "What makes a great programming language"
-pubDate: 'Jul 9 2024'
+pubDate: 'Jul 11 2024'
 tags: ['opinion', 'tech']
 ---
 

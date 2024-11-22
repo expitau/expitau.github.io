@@ -1,0 +1,172 @@
+---
+meta:
+  pages: 1
+  redacted: false
+bio:
+  Highly motivated software developer with several years of professional experience and a proven ability to deliver high-quality, maintainable code. Enthusiastic about programming, with dozens of personal projects and a diverse range of interests. Seeking a challenging role to improve technical skills and contribute to innovative projects. 
+header:
+  name: Nathan DSilva
+  description: University of Waterloo - Computational Mathematics
+  email: expitau@gmail.com
+  address: Waterloo ON
+  linkedin: 'nathan-dsilva'
+  linkedin_url: 'https://www.linkedin.com/in/nathan-dsilva/'
+  github: 'expitau'
+  github_url: 'https://github.com/expitau'
+  website: 'expitau.com'
+skills_summary:
+  frontend:
+    - Javascript/Typescript
+    - React
+    - Vue
+    - Tailwind
+    - REST APIs
+  languages:
+    - Rust
+    - Python
+    - Node.js
+    - Golang
+    - C/C++
+    - Bash
+  tools:
+    - Linux
+    - Docker
+    - AWS
+    - Git
+    - MongoDB
+    - PostgreSQL
+    - MySQL
+    - CircleCI
+  soft:
+    - Delegative Leadership
+    - Technical Mentoring
+    - Conflict Resolution
+    - Automation
+education:
+  - name: University of Waterloo
+    dates: 2020 - 2025
+    description: >
+      Computational Mathematics, Combinatorics & Optimization (Co-op)
+  - name: Quantum Cryptography School for Young Students
+    dates: 2019
+    description: >
+      Studied theoretical physics & cryptography at the Lazaridis Quantum Nano Center and Perimeter Institute.
+experience:
+  - title: Lead Developer
+    capacity: 8 months
+    location: Waterloo, ON
+    company: University of Waterloo - Games Institute
+    dates: May 2024 - Dec 2024
+    responsibilities:
+      - >
+        Primary technical lead for the entire project, responsible for architecture, design, and implementation of new features.
+      - > 
+        Independently lead teams of 4-7 developers to overhaul the full-stack application written in Go and React.js.
+      - > 
+        Pushed project timelines forward by 6 months by significantly improving development speed and code quality.
+      - >
+        Conducted code reviews, mentored developers, and worked with clients to determine project requirements and scope.
+  - title: Machine Learning Engineer (Part-time)
+    capacity: 4 months
+    location: Waterloo, ON
+    company: University of Waterloo
+    dates: Sep 2024 - Dec 2024
+    responsibilities:
+      - > 
+        Improved ECG diagnosis accuracy from 86.1% to 98.6% while simultaneously reducing model size by a factor of 250 times by architecting a neural network from scratch with PyTorch.
+  - title: Project Lead
+    capacity: 8 months
+    location: Vancouver, BC
+    company: Scrawlr Development Inc.
+    dates: Jan 2023 - Aug 2023
+    responsibilities:
+      - >
+        Lead developer on over 20 projects, including a reactivity library for Vue.js, a browser extension plugin for Vite, and various API specification & mocking utilities.
+      - > 
+        Mentored several junior developers by providing technical guidance, conducting code reviews, and completing performance evaluations.
+      - > 
+        Collaborated across 4 different teams to develop tools, infrastructure, CI/CD, web components, and APIs.
+  - title: Internal Tools Developer
+    capacity: 8 months
+    location: Vancouver, BC
+    company: Scrawlr Development Inc.
+    dates: May 2022 - Dec 2022
+      # - >
+      #   Developed a scripting framework for writing API specification in Javascript and converting it to YAML to be rendered as a documentation. This eliminated the need for over 10,000 lines of manually written YAML code, and greatly improved version control and modularity.
+      # - >
+      #   Developed a Javascript library for writing YAML API specifications that are rendered into endpoint documentation, and created a mock API server that dynamically generates simulated responses without the need for a backend. Additionally worked on developing Javascript bindings for the internal APIs to ensure correctness and improve maintainability.
+      # - >
+      #   Extensively used Terraform, AWS, and CircleCI to improve CI/CD and infrastructure for various projects. Developed the networking infrastructure required to host different network zones (internal-only, internal-outbound, and external), and created an example containerized application hosted on ECS to demonstrate load-balancing abilities.
+      # - >
+      #   Created AWS infrastructure for creating other internal tools using ECR and EC2 and deployed a multi-container internal application that utilizes a PostgreSQL database and Express.js to interface with multiple APIs
+  - title: Junior Network Administrator
+    capacity: 4 months
+    location: North York, ON
+    company: Questenterprise Inc.
+    dates: Sep 2021 - Dec 2021
+    responsibilities:
+projects:
+  - 
+    - name: Infinite Craft Wiki
+      source: https://github.com/expitau/InfiniteCraftWiki
+      genre: Web Interface
+      tech:
+        - Vue
+        - Tailwind
+        - Data handling
+      description: >
+        Used by over 84k players, compiled 6.6 million recipes from the game "Infinite Craft" into a searchable interface without requiring a database. and achieved 1.1 million page views in the first 4 months of operation. 
+    - name: MineNewt
+      source: https://github.com/expitau/MineNewt
+      genre: Machine Learning
+      tech:
+        - Rust
+        - Python
+        - Neural Networks
+      description: >
+        Created a machine learning library from scratch in Rust, and researched novel encodings of neural networks with stochastic (probabilistic) bits. Developed a Python library for simulating performance of networks encoded this way, and embedded it into a custom chip architecture. 
+  - 
+    - name: Forgscript
+      source: Open Source
+      genre: Programming Language
+      tech:
+        - Rust
+        # - C++
+        - VSCode
+      description: >
+        Created an esoteric programming language that features non-linear code execution inspired by the Collatz Conjecture. Built with Rust and includes a VSCode extension that provides syntax highlighting and visualization tools to improve developer experience.
+    - name: Fish Game
+      source: Open Source
+      genre: Real Time Multiplayer Game
+      tech:
+        - Javascript
+        - Websockets
+        - Docker
+      description: >
+        A real-time multiplayer game developed collaboratively with another student. Developed the backend for handling websocket connections, networking, and syncing game state as well as the physics engine. Achieved sub-millisecond latency even on inconsistent connections by running physics calculations on the client and compensating for server ping time when syncing state.
+    - name: Trianguloids
+      source: https://expitau.itch.io/trianguloids
+      genre: Web game & Application
+      tech:
+        - C#
+        - Unity
+      description: >
+        Created in 48 hours for the 2020 GMTK Game Jam. Uses a variety of algorithms, including a recursive depth-first search and procedural map generation with cellular automata.
+    - name: The Wizard's Tower
+      source: https://cryptexhunt.com/2021
+      genre: Text Adventure / Virtual Escape Room
+      tech:
+        - Advenutron
+        - Puzzle Design
+      description: >
+        Authored and developed the 7th puzzle for the 2021 Cryptex Puzzle Hunt. Created puzzles and programmed a text adventure level that was solved by over 550 teams worldwide.
+    - name: Timetable Management Software
+      source: Open source
+      genre: Administrative Platform
+      tech:
+        - PHP
+        - MySQL
+        - Bootstrap
+        - JQuery
+      description: >
+        Developed a full-stack application for the administration at Uxbridge Secondary School that uses SQL and JQuery to create an intuitive tool for visualizing and assigning classes, teachers, and time slots. Authentication and proper password management was necessary to ensure security of potentially sensitive information.
