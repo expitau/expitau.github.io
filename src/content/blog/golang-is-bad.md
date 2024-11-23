@@ -1,14 +1,13 @@
 ---
-title: "Why I hate Go"
-description: "What makes a great programming language"
+title: "Go is a bad language"
+description: "What makes a programming language great"
 pubDate: 'Jul 11 2024'
 tags: ['opinion', 'tech']
 ---
 
-Hate is a strong word. I've worked with large projects with Go, and I'm comfortable writing it. But while we've managed to coexist, I've taken issue at some of Go's features and syntax, which I think are misguided at best and outright harmful at worst.
+I've worked with large projects with Go, and I'm comfortable writing it. But while we've managed to coexist, I've taken issue at some of Go's features and syntax, which I think are misguided at best and outright harmful at worst.
 
 Golang is meant to be a fast, low-level language alternative to C and C++, with strong types and language features that make it more difficult to use than Python and Javascript, but much more efficient. For this reason, I'm going to be comparing it to its current biggest competitor: Rust. While slightly easier to use than Rust, Go has issues that make it clunky, slower, and unsafe. I outline some of these problems below, in increasing order of egregiousness
-
 
 ## Issue 1 - Capitalization as syntax
 
