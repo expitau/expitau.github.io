@@ -345,7 +345,7 @@ import BlogCard from "../components/BlogCard.astro";
 			<div id="main-projects">
 				{
 					projects.slice(0, 3).map((project) => (
-						<CardLink href="/projects">
+						<CardLink href={project.data.liveUrl || project.data.url || '/projects'}>
 							<div class="main-projects-card">
 								<img
 									style="width: 100%;"

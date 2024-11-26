@@ -2,7 +2,7 @@
 title: "Factorials and circles"
 description: "The nature of math"
 pubDate: 'Jun 30 2024'
-tags: ['opinion', 'math']
+tags: ['lecture', 'math']
 ---
 
 Back in highschool, I discovered the magic of the Desmos graphing calculator. Being the nerdy tinkerer I was, I pushed this tool to its limits, making lots of fun graphs, even including a fully-playable version of pong. 
