@@ -126,6 +126,7 @@ import BlogCard from "../components/BlogCard.astro";
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
+			margin-bottom: 1rem;
 		}
 
 		#main-projects > * {
@@ -340,6 +341,7 @@ import BlogCard from "../components/BlogCard.astro";
 				time working on my many personal projects, some of which you can
 				find on <a href="https://github.com/expitau">my GitHub</a>.
 			</p>
+			<a href="/about" style="font-weight: 600; color: #d8b4fe; display: flex; align-items: center; gap: 0.3rem;">View more<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></a>
 			<br />
 			<h2>Projects</h2>
 			<div id="main-projects">
@@ -365,11 +367,12 @@ import BlogCard from "../components/BlogCard.astro";
 					))
 				}
 			</div>
+			<a href="/projects" style="font-weight: 600; color: #d8b4fe; display: flex; align-items: center; gap: 0.3rem;">View more<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></a>
 			<br />
 			<h2>Blog</h2>
 			<div
 				id="main-blog"
-				style="display: flex; flex-direction: column; gap: 0.5rem"
+				style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;"
 			>
 				{
 					blog.slice(0, 3).map((post) => (
@@ -377,6 +380,7 @@ import BlogCard from "../components/BlogCard.astro";
 					))
 				}
 			</div>
+			<a href="/blog" style="font-weight: 600; color: #d8b4fe; display: flex; align-items: center; gap: 0.3rem;">Read more<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></a>
 			<br />
 			<h2>Resume</h2>
 			<p>
@@ -385,7 +389,7 @@ import BlogCard from "../components/BlogCard.astro";
 			</p>
 			<div id="resume-buttons">
 				<a class="button" href="/resume/resume.pdf"> Download PDF </a>
-				<a class="button" href="/resume/resume.html"> View HTML </a>
+				<a class="button" href="/resume/index.html"> View HTML </a>
 			</div>
 		</div>
 	</div>
