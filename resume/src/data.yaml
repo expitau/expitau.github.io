@@ -14,6 +14,32 @@ header:
   github: 'expitau'
   github_url: 'https://github.com/expitau'
   website: 'expitau.com'
+coverletter:
+  - >
+    Dec 1, 2024
+    
+
+    Dear Hiring Manager,
+
+
+    I was so excited to see this opening on Stripe's website because it is exactly the type of role I've been looking for: an opportunity to bring my experience in software development and leadership to a larger team with similarly top-talented engineers.
+
+
+    As the technical lead for several codebases, I've had the opportunity to independently manage teams and make high-level decisions that directly impact projects. I've held a lot of responsibility to deliver high-quality software within tight deadlines, and by leading and building teams of developers I have a proven record of my abilities to do so. I am confident that I am well-equipped to handle any challenges or problems I will encounter on your team. 
+
+
+    I bring a critical, systems-level perspective to my work. During my first week as a machine learning engineer for the University of Waterloo Biology Department, I decided it would be cost-effective to scrap the existing model built on Azure, and do it from scratch with Pytorch. While my employer was understandably hesitant to discard such a significant amount of effort, this ultimately resulted in a more maintainable and deployable model that was 5 times more accurate and 99.6% smaller. Similarly, during my first week as a lead developer at the Games Institute, I migrated the entire frontend from Next.js to pure React, resulting in 150x faster build times and significantly cleaner code. In the above instances, it would have been more than acceptable to do only what was asked of me, but I don't settle on "good enough". I want every project I work on to be the best, even if that means taking calculated risks and making difficult decisions.
+
+
+    Alongside my professional work, my projects are used by tens of thousands of users. I love building things from concept to completion, and I'm always looking for ways to improve the systems I work on. I've used dozens of different tools and technologies and I'm always excited to learn new ones. I believe having diverse experiences and skills is critical to my ability to make informed technical decisions and create high-quality code. 
+
+
+    Given my experience and enthusiasm for your work, I would make a great addition to your team. Nothing worth doing is easy, and I am excited to solve unique and challenging problems and have a meaningful impact at Stripe. I would love to call and chat with you about what I can contribute to your team. 
+
+
+    Sincerely,
+
+    Nathan DSilva
 skills_summary:
   frontend:
     - Javascript/Typescript
@@ -21,21 +47,28 @@ skills_summary:
     - Vue
     - Tailwind
     - REST APIs
+    - PHP
+    - HTML
+    - CSS
   languages:
-    - Rust
     - Python
+    - Rust
     - Node.js
-    - Golang
-    - C/C++
+    - Go
+    - C
+    - C++
     - Bash
+    - SQL
+    - Java
+    - C#
   tools:
-    - Linux
     - Docker
     - AWS
-    - Git
-    - MongoDB
     - PostgreSQL
+    - MongoDB
     - MySQL
+    - Git
+    - Linux
     - CircleCI
   soft:
     - Delegative Leadership
@@ -61,7 +94,7 @@ experience:
       - >
         Primary technical lead for the entire project, responsible for architecture, design, and implementation of new features.
       - > 
-        Independently lead teams of 4-7 developers to overhaul the full-stack application written in Go and React.js.
+        Independently led teams of 4-7 developers to overhaul the full-stack application written in Go and React.js.
       - > 
         Pushed project timelines forward by 6 months by significantly improving development speed and code quality.
       - >
@@ -115,7 +148,7 @@ projects:
         - Tailwind
         - Data handling
       description: >
-        Used by over 84k players, compiled 6.6 million recipes from the game "Infinite Craft" into a searchable interface without requiring a database. and achieved 1.1 million page views in the first 4 months of operation. 
+        Used by over 84k players, compiled 6.6 million recipes from the game "Infinite Craft" into a searchable interface without requiring a database, and achieved 1.1 million page views in the first 4 months of operation. 
     - name: MineNewt
       source: https://github.com/expitau/MineNewt
       genre: Machine Learning
@@ -124,7 +157,7 @@ projects:
         - Python
         - Neural Networks
       description: >
-        Created a machine learning library from scratch in Rust, and researched novel encodings of neural networks with stochastic (probabilistic) bits. Developed a Python library for simulating performance of networks encoded this way, and embedded it into a custom chip architecture. 
+        Created a machine learning library from scratch in Rust, and researched novel encodings of neural networks with stochastic (probabilistic) bits. Developed a Python library for simulating the performance of networks encoded this way, and embedded it into a custom chip architecture. 
   - 
     - name: Forgscript
       source: Open Source
