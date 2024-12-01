@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "dev:resume": "live-server --port=5001 --open=resume/src --watch=resume",
-    "build:resume": "cd public/resume && node ../../resume/build.cjs"
+    "build:resume": "cd resume && node build.cjs"
   },
   "dependencies": {
     "astro": "^4.11.3",
