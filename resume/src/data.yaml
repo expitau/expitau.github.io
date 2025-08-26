@@ -15,31 +15,39 @@ header:
   github_url: 'https://github.com/expitau'
   website: 'expitau.com'
 coverletter:
-  - >
-    Dec 1, 2024
-    
-
-    Dear Hiring Manager,
+    - >
+      Dec 1, 2024
 
 
-    I was so excited to see this opening on Stripe's website because it is exactly the type of role I've been looking for: an opportunity to bring my experience in software development and leadership to a larger team with similarly top-talented engineers.
+      Dear Hiring Manager,
 
 
-    As the technical lead for several codebases, I've had the opportunity to independently manage teams and make high-level decisions that directly impact projects. I've held a lot of responsibility to deliver high-quality software within tight deadlines, and by leading and building teams of developers I have a proven record of my abilities to do so. I am confident that I am well-equipped to handle any challenges or problems I will encounter on your team. 
+      I was so excited to see this opening on Instacart's website because it is exactly the type of role I've been looking for: an opportunity to bring my experience in software development and machine learning to a larger team with similarly top-talented engineers.
 
 
-    I bring a critical, systems-level perspective to my work. During my first week as a machine learning engineer for the University of Waterloo Biology Department, I decided it would be cost-effective to scrap the existing model built on Azure, and do it from scratch with Pytorch. While my employer was understandably hesitant to discard such a significant amount of effort, this ultimately resulted in a more maintainable and deployable model that was 5 times more accurate and 99.6% smaller. Similarly, during my first week as a lead developer at the Games Institute, I migrated the entire frontend from Next.js to pure React, resulting in 150x faster build times and significantly cleaner code. In the above instances, it would have been more than acceptable to do only what was asked of me, but I don't settle on "good enough". I want every project I work on to be the best, even if that means taking calculated risks and making difficult decisions.
+      As the technical lead for several codebases, I've had the opportunity to independently manage teams and make high-level decisions that directly impact projects. I've held a lot of responsibility to deliver high-quality software within tight deadlines, and by leading and building teams of developers I have a proven record of my abilities to do so. I am confident that I am well-equipped to handle any challenges or problems I will encounter on your team. 
 
 
-    Alongside my professional work, my projects are used by tens of thousands of users. I love building things from concept to completion, and I'm always looking for ways to improve the systems I work on. I've used dozens of different tools and technologies and I'm always excited to learn new ones. I believe having diverse experiences and skills is critical to my ability to make informed technical decisions and create high-quality code. 
+      I bring a critical, systems-level perspective to my work. During my first week as a machine learning engineer for the University of Waterloo Biology Department, I decided it would be cost-effective to scrap the existing model built on Azure, and do it from scratch with Pytorch. While my employer was understandably hesitant to discard such a significant amount of effort, this ultimately resulted in a more maintainable and deployable model that was 5 times more accurate and 99.6% smaller. Similarly, during my first week as a lead developer at the Games Institute, I migrated the entire frontend from Next.js to pure React, resulting in 150x faster build times and significantly cleaner code. In the above instances, it would have been more than acceptable to do only what was asked of me, but I don't settle on "good enough". I want every project I work on to be the best, even if that means taking calculated risks and making difficult decisions.
 
 
-    Given my experience and enthusiasm for your work, I would make a great addition to your team. Nothing worth doing is easy, and I am excited to solve unique and challenging problems and have a meaningful impact at Stripe. I would love to call and chat with you about what I can contribute to your team. 
+      Alongside my professional work, my projects are used by tens of thousands of users. I love building things from concept to completion, and I'm always looking for ways to improve the systems I work on. I've used dozens of different tools and technologies and I'm always excited to learn new ones. I believe having diverse experiences and skills is critical to my ability to make informed technical decisions and create high-quality code. 
 
 
-    Sincerely,
+      Given my experience and enthusiasm for your work, I would make a great addition to your team. Nothing worth doing is easy, and I am excited to solve unique and challenging problems and have a meaningful impact at Instacart. I would love to call and chat with you about what I can contribute to your team. 
 
-    Nathan DSilva
+
+      Sincerely,
+
+      Nathan DSilva
+    - >
+      Hello!
+
+      I'm Nathan, a lead developer for the Games Institute at the University of Waterloo. I have about 2 years of professional experience in software development, leading teams, and delivering projects. I am seeking a full time role for after I graduate in April 2025. 
+
+      I think I would be a great candidate for Stripe because I have a proven record of my ability to deliver quality software independently and within tight deadlines. I am particularly interested in Stripe because I believe in your values and I want to expand my network of talented software engineers in Canada. 
+
+      I would love a chance to call and chat further about my skills and experience!
 skills_summary:
   frontend:
     - Javascript/Typescript

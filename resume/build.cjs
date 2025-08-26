@@ -28,7 +28,7 @@ app.listen(PORT, async () => {
 
   // Move index.html and resume.pdf to ../public/resume
   fs.copyFileSync('build/index.html', '../public/resume/index.html');
-  fs.copyFileSync('build/resume.pdf', '../public/resume/resume.pdf');
+  fs.copyFileSync('build/resume.pdf', '../public/resume/Nathan_DSilva_Resume_2024.pdf');
 
   process.exit()
 });

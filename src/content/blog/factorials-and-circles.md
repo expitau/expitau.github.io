@@ -5,23 +5,23 @@ pubDate: 'Jun 30 2024'
 tags: ['lecture', 'math']
 ---
 
-Back in highschool, I discovered the magic of the Desmos graphing calculator. Being the nerdy tinkerer I was, I pushed this tool to its limits, making lots of fun graphs, even including a fully-playable version of pong. 
+In highschool, I discovered the magic of the Desmos graphing calculator. Being a nerdy tinkerer, I pushed this tool to its limits, making lots of fun graphs, even including a fully-playable version of pong. 
 
 <div class="embed">
     <iframe src="https://www.desmos.com/calculator/zaeozsxl0q?embed" style="border: 1px solid #ccc" frameborder=0></iframe>
 </div>
 
-So when we learned about factorials in math class, one of the first things I did was plug it into Desmos to see what it looked like.
+So when we learned about factorials in my grade 11 math class, one of the first things I did was plug it into Desmos to see what it looked like.
 
 <div class="embed">
     <iframe src="https://www.desmos.com/calculator/kuim0f5olg?embed" style="border: 1px solid #ccc" frameborder=0></iframe>
 </div>
 
-I was very suprised at what I got. I was expecting a pointwise function on every positive integer, but not only did I get rational numbers, the graph went crazy in the negatives! Beyond that, when I plugged it into a calculator I found
+I was shocked at what I got. I was expecting a pointwise function on every positive integer, but not only did I get rational numbers, the graph went crazy in the negatives! Furthermore, when I plugged it into a calculator I found
 
 $$\displaystyle 0.5! = \frac{\sqrt{\pi}}{2}$$
 
-Woah! Why is pi there? What does this factorial have to do with circles?? I asked the poor substitute teacher what was happening, and they gave a confused attempt at an answer; but a quick Google search pointed me towards the gamma function, defined as follows
+Woah! Why is pi there? What does this factorial have to do with circles?? I asked my poor substitute teacher what was happening, and they gave a confused attempt at an answer; but a quick Google search pointed me towards the gamma function, defined as follows
 
 $$\displaystyle n! := \Gamma(n + 1) = \int_0^\infty t^{n}e^{-t}dt$$
 

@@ -120,7 +120,7 @@ export class UsersController extends BaseController {
 }
 ```
 
-How would you now call this, and implement it as an endpoint? I bet it's not entirely obvious, nor is it obvious what `userResult` is supposed to be. In fact, without Typescript, this code is less safe and more prone to errors, despite all the structure and checking. Let's compare it to an explicit, functional approach.
+Now how would you call this, and implement it as an endpoint? I bet it's not entirely obvious, nor is it obvious what `userResult` is supposed to be. In fact, without Typescript, this code is less safe and more prone to errors, despite all the structure and checking. Let's compare it to an explicit, functional approach.
 
 ```js
 import {
