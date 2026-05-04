@@ -54,19 +54,19 @@ ul {
     margin: 0;
 }
 
-a {
-    color: var(--link);
-    font-weight: bold;
+p a {
+    color: var(--accent);
     display: inline-block;
     text-decoration: none;
-    transition:
-        transform var(--transition-s),
-        color var(--transition-s);
 }
 
 p a:hover {
     text-decoration: underline;
-    transform: translateY(-0.2rem);
+}
+
+a {
+    color: unset;
+    text-decoration: unset;
 }
 
 article .astro-code {
@@ -108,17 +108,45 @@ article .embed {
 
 }
 
-article .embed > iframe {
+article .embed>iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
 
-article > p > .MathJax-block{
+article>p>.MathJax-block {
     display: block;
     margin-inline: auto;
     width: fit-content;
     font-size: large;
     overflow-x: auto;
     max-width: 100%;
+}
+
+
+.copytooltip {
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--surface);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    animation: fadeout 2s ease forwards;
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }

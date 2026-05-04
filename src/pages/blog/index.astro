@@ -23,17 +23,39 @@ import { formatDate } from "../../util/helpers";
             margin: 1rem 0 0.5rem 0;
         }
     </style>
-    <BackButton />
+
+    
+    <a
+        href="/"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: absolute; top: 2rem; left: 2rem;"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            width="24px"
+            height="24px"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
+        </svg>
+        Home
+    </a>
+    <div style=" width: 90%; max-width: 50rem; padding-top: 6rem; padding-bottom: 12rem;">
+
     <h1 style="text-align: center;">Blog</h1>
-    <p style="text-align: center;">
-        Here are a few articles I've written about things I think are worth
-        sharing
-    </p>
-    <div id="blog-list" style="margin-top: 4rem; width: 100%">
+    <div id="blog-list" style="margin-top: 4rem;">
         {
             blog.map((post) => {
-                return <BlogCard post={post} />;
+                return <a style="display: flex; flex-direction: row; gap: 1rem;" href={`/blog/${post.slug}`}>
+                    <h2>{post.data.title}</h2>
+                </a>;
             })
         }
+    </div>
     </div>
 </Layout>

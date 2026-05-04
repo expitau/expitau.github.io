@@ -25,6 +25,7 @@ const projects = defineCollection({
 		pubDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
 		liveUrl: z.string().optional(),
+		github: z.string().optional(),
 		url: z.string().optional(),
 		priority: z.number().optional(),
 	}),
