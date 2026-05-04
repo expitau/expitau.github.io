@@ -1,260 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Image Color Editor</title>
-<style>
-  body { font-family: sans-serif; margin: 20px; }
-  .container { display: flex; gap: 20px; flex-wrap: wrap; }
-  .controls { display: flex; flex-direction: column; gap: 8px; }
-  .swatch { display: flex; align-items: center; gap: 8px; }
-  .swatch .orig { display: inline-block; width: 40px; height: 20px; border: 1px solid #000; }
-  canvas { border: 1px solid #ccc; max-width: 100%; height: auto; }
-  #code { width: 320px; font-family: monospace; padding: 6px; }
-  .code-row { margin-top: 12px; }
-  button { padding: 6px 12px; cursor: pointer; }
-</style>
+  <meta charset="UTF-8">
+  <title>Image Color Editor</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .container {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch .orig {
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      border: 1px solid #000;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+      max-width: 50vw;
+      height: auto;
+    }
+
+    #code {
+      width: 320px;
+      font-family: monospace;
+      padding: 6px;
+    }
+
+    .code-row {
+      margin-top: 12px;
+    }
+
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>Soup art!</h1>
-
-<div class="container">
-  <div>
+  <div class="code-row">
+    <label for="code">Share code:</label><br>
+    <input type="text" id="code" maxlength="36" />
+    <button id="copy">Copy Code</button>
+    <button id="reset-default">Reset to Default</button>
+  </div>
+  <div class="container">
     <canvas id="canvas"></canvas>
+    <div class="controls" id="controls">
+      <p>Loading image...</p>
+    </div>
   </div>
-  <div class="controls" id="controls">
-    <p>Loading image...</p>
-  </div>
-</div>
 
-<div class="code-row">
-  <label for="code">Share code:</label><br>
-  <input type="text" id="code" maxlength="36" />
-  <button id="copy">Copy Code</button>
-  <button id="reset-default">Reset to Default</button>
-</div>
 
-<script>
-const IMAGE_URL = "https://media.discordapp.net/attachments/739657217975779409/1500859571290509525/image.png?ex=69f9f7e6&is=69f8a666&hm=f09e0097355517830178ac69f17b3b3a8640df035b2bdd9fdc26eca2eca96cca&=&format=webp&quality=lossless&width=1008&height=1008";
+  <script>
+    const IMAGE_URL = "/SoupQ.png";
 
-const INITIAL_CODE = "999999777777ddddddffffff333333000000";
-const STORAGE_KEY = "colorEditor.code";
+    const INITIAL_CODE = "999999777777ddddddffffff333333000000";
+    const STORAGE_KEY = "colorEditor.code";
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const controlsDiv = document.getElementById('controls');
-const codeInput = document.getElementById('code');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const controlsDiv = document.getElementById('controls');
+    const codeInput = document.getElementById('code');
 
-let originalPixels = null;
-let originalColors = [];   // sorted by frequency, descending
-let currentColors = [];
-let pixelIndexMap = null;
+    let originalPixels = null;
+    let originalColors = [];   // sorted by frequency, descending
+    let currentColors = [];
+    let pixelIndexMap = null;
 
-const rgbToHex = (r, g, b) =>
-  '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+    const rgbToHex = (r, g, b) =>
+      '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
 
-const hexToRgb = hex => {
-  hex = hex.replace('#', '');
-  return [
-    parseInt(hex.substring(0, 2), 16),
-    parseInt(hex.substring(2, 4), 16),
-    parseInt(hex.substring(4, 6), 16),
-  ];
-};
+    const hexToRgb = hex => {
+      hex = hex.replace('#', '');
+      return [
+        parseInt(hex.substring(0, 2), 16),
+        parseInt(hex.substring(2, 4), 16),
+        parseInt(hex.substring(4, 6), 16),
+      ];
+    };
 
-const colorKey = (r, g, b) => `${r},${g},${b}`;
+    const colorKey = (r, g, b) => `${r},${g},${b}`;
 
-const img = new Image();
-img.crossOrigin = 'anonymous';
-img.onload = () => {
-  canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
-  ctx.drawImage(img, 0, 0);
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
 
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  originalPixels = new Uint8ClampedArray(imageData.data);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      originalPixels = new Uint8ClampedArray(imageData.data);
 
-  // Count unique colors (skip fully transparent)
-  const counts = new Map();
-  for (let i = 0; i < originalPixels.length; i += 4) {
-    if (originalPixels[i + 3] === 0) continue;
-    const r = originalPixels[i], g = originalPixels[i + 1], b = originalPixels[i + 2];
-    const key = colorKey(r, g, b);
-    counts.set(key, (counts.get(key) || 0) + 1);
-  }
-
-  // Top 6, sorted by frequency descending — this is the canonical Color 1..6 order
-  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
-  const top = sorted.slice(0, 6).map(([key]) => key.split(',').map(Number));
-
-  originalColors = top;
-  currentColors = top.map(c => [...c]);
-
-  // Map every pixel to its nearest palette index
-  const keyToIndex = new Map();
-  top.forEach((c, i) => keyToIndex.set(colorKey(...c), i));
-
-  pixelIndexMap = new Int8Array(canvas.width * canvas.height);
-  for (let i = 0, p = 0; i < originalPixels.length; i += 4, p++) {
-    if (originalPixels[i + 3] === 0) { pixelIndexMap[p] = -1; continue; }
-    const r = originalPixels[i], g = originalPixels[i + 1], b = originalPixels[i + 2];
-    const key = colorKey(r, g, b);
-    if (keyToIndex.has(key)) {
-      pixelIndexMap[p] = keyToIndex.get(key);
-    } else {
-      let best = 0, bestD = Infinity;
-      for (let k = 0; k < top.length; k++) {
-        const [tr, tg, tb] = top[k];
-        const d = (r - tr) ** 2 + (g - tg) ** 2 + (b - tb) ** 2;
-        if (d < bestD) { bestD = d; best = k; }
+      // Count unique colors (skip fully transparent)
+      const counts = new Map();
+      for (let i = 0; i < originalPixels.length; i += 4) {
+        if (originalPixels[i + 3] === 0) continue;
+        const r = originalPixels[i], g = originalPixels[i + 1], b = originalPixels[i + 2];
+        const key = colorKey(r, g, b);
+        counts.set(key, (counts.get(key) || 0) + 1);
       }
-      pixelIndexMap[p] = best;
+
+      // Top 6, sorted by frequency descending — this is the canonical Color 1..6 order
+      const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+      const top = sorted.slice(0, 6).map(([key]) => key.split(',').map(Number));
+
+      originalColors = top;
+      currentColors = top.map(c => [...c]);
+
+      // Map every pixel to its nearest palette index
+      const keyToIndex = new Map();
+      top.forEach((c, i) => keyToIndex.set(colorKey(...c), i));
+
+      pixelIndexMap = new Int8Array(canvas.width * canvas.height);
+      for (let i = 0, p = 0; i < originalPixels.length; i += 4, p++) {
+        if (originalPixels[i + 3] === 0) { pixelIndexMap[p] = -1; continue; }
+        const r = originalPixels[i], g = originalPixels[i + 1], b = originalPixels[i + 2];
+        const key = colorKey(r, g, b);
+        if (keyToIndex.has(key)) {
+          pixelIndexMap[p] = keyToIndex.get(key);
+        } else {
+          let best = 0, bestD = Infinity;
+          for (let k = 0; k < top.length; k++) {
+            const [tr, tg, tb] = top[k];
+            const d = (r - tr) ** 2 + (g - tg) ** 2 + (b - tb) ** 2;
+            if (d < bestD) { bestD = d; best = k; }
+          }
+          pixelIndexMap[p] = best;
+        }
+      }
+
+      // Decide starting palette: saved code > initial code > original colors
+      let startCode = null;
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && /^[0-9a-fA-F]{36}$/.test(saved)) startCode = saved;
+      } catch (e) { /* localStorage unavailable */ }
+      if (!startCode && INITIAL_CODE && /^[0-9a-fA-F]{36}$/.test(INITIAL_CODE)) {
+        startCode = INITIAL_CODE;
+      }
+      if (startCode) {
+        for (let i = 0; i < 6; i++) {
+          currentColors[i] = hexToRgb(startCode.substr(i * 6, 6));
+        }
+      }
+
+      // The "original" swatches should reflect the default (INITIAL_CODE) rather
+      // than the colors detected from the image, so they line up with what
+      // "Reset to Default" returns you to.
+      if (INITIAL_CODE && /^[0-9a-fA-F]{36}$/.test(INITIAL_CODE)) {
+        originalColors = [];
+        for (let i = 0; i < 6; i++) {
+          originalColors.push(hexToRgb(INITIAL_CODE.substr(i * 6, 6)));
+        }
+      }
+
+      buildControls();
+      render();
+      updateCode();
+      startAutosave();
+    };
+    img.onerror = () => {
+      controlsDiv.innerHTML = '<p style="color:red;">Failed to load image (likely CORS or expired URL).</p>';
+    };
+    img.src = IMAGE_URL;
+
+    function buildControls() {
+      controlsDiv.innerHTML = '';
+      originalColors.forEach((c, i) => {
+        const row = document.createElement('div');
+        row.className = 'swatch';
+
+        const orig = document.createElement('span');
+        orig.className = 'orig';
+        orig.style.background = rgbToHex(...c);
+        orig.title = 'Original: ' + rgbToHex(...c);
+
+        const input = document.createElement('input');
+        input.type = 'color';
+        input.value = rgbToHex(...currentColors[i]);
+        input.addEventListener('input', e => {
+          currentColors[i] = hexToRgb(e.target.value);
+          render();
+          updateCode();
+        });
+
+        const text = document.createElement('span');
+        text.textContent = `Color ${i + 1}`;
+
+        row.appendChild(orig);
+        row.appendChild(input);
+        row.appendChild(text);
+        controlsDiv.appendChild(row);
+      });
+
+      const reset = document.createElement('button');
+      reset.textContent = 'Reset Colors';
+      reset.addEventListener('click', () => {
+        currentColors = originalColors.map(c => [...c]);
+        buildControls();
+        render();
+        updateCode();
+      });
+      controlsDiv.appendChild(reset);
     }
-  }
 
-  // Decide starting palette: saved code > initial code > original colors
-  let startCode = null;
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && /^[0-9a-fA-F]{36}$/.test(saved)) startCode = saved;
-  } catch (e) { /* localStorage unavailable */ }
-  if (!startCode && INITIAL_CODE && /^[0-9a-fA-F]{36}$/.test(INITIAL_CODE)) {
-    startCode = INITIAL_CODE;
-  }
-  if (startCode) {
-    for (let i = 0; i < 6; i++) {
-      currentColors[i] = hexToRgb(startCode.substr(i * 6, 6));
+    function render() {
+      const out = ctx.createImageData(canvas.width, canvas.height);
+      for (let i = 0, p = 0; i < out.data.length; i += 4, p++) {
+        const idx = pixelIndexMap[p];
+        if (idx === -1) {
+          out.data[i + 3] = 0;
+        } else {
+          const [r, g, b] = currentColors[idx];
+          out.data[i] = r;
+          out.data[i + 1] = g;
+          out.data[i + 2] = b;
+          out.data[i + 3] = originalPixels[i + 3];
+        }
+      }
+      ctx.putImageData(out, 0, 0);
     }
-  }
 
-  // The "original" swatches should reflect the default (INITIAL_CODE) rather
-  // than the colors detected from the image, so they line up with what
-  // "Reset to Default" returns you to.
-  if (INITIAL_CODE && /^[0-9a-fA-F]{36}$/.test(INITIAL_CODE)) {
-    originalColors = [];
-    for (let i = 0; i < 6; i++) {
-      originalColors.push(hexToRgb(INITIAL_CODE.substr(i * 6, 6)));
+    function updateCode() {
+      codeInput.value = currentColors
+        .map(([r, g, b]) => rgbToHex(r, g, b).slice(1))
+        .join('');
     }
-  }
 
-  buildControls();
-  render();
-  updateCode();
-  startAutosave();
-};
-img.onerror = () => {
-  controlsDiv.innerHTML = '<p style="color:red;">Failed to load image (likely CORS or expired URL).</p>';
-};
-img.src = IMAGE_URL;
+    // Reactive: as the user types/pastes, apply immediately when valid
+    codeInput.addEventListener('input', () => {
+      if (!pixelIndexMap) return;
+      const code = codeInput.value.trim().replace(/^#/, '');
+      if (!/^[0-9a-fA-F]{36}$/.test(code)) return; // ignore until valid
+      for (let i = 0; i < 6; i++) {
+        currentColors[i] = hexToRgb(code.substr(i * 6, 6));
+      }
+      // Update color picker swatches without rebuilding the whole list
+      const inputs = controlsDiv.querySelectorAll('input[type="color"]');
+      inputs.forEach((inp, i) => {
+        inp.value = rgbToHex(...currentColors[i]);
+      });
+      render();
+    });
 
-function buildControls() {
-  controlsDiv.innerHTML = '';
-  originalColors.forEach((c, i) => {
-    const row = document.createElement('div');
-    row.className = 'swatch';
+    document.getElementById('copy').addEventListener('click', () => {
+      codeInput.select();
+      navigator.clipboard.writeText(codeInput.value);
+    });
 
-    const orig = document.createElement('span');
-    orig.className = 'orig';
-    orig.style.background = rgbToHex(...c);
-    orig.title = 'Original: ' + rgbToHex(...c);
-
-    const input = document.createElement('input');
-    input.type = 'color';
-    input.value = rgbToHex(...currentColors[i]);
-    input.addEventListener('input', e => {
-      currentColors[i] = hexToRgb(e.target.value);
+    document.getElementById('reset-default').addEventListener('click', () => {
+      if (!pixelIndexMap) return;
+      const target = (INITIAL_CODE && /^[0-9a-fA-F]{36}$/.test(INITIAL_CODE))
+        ? INITIAL_CODE
+        : originalColors.map(([r, g, b]) => rgbToHex(r, g, b).slice(1)).join('');
+      for (let i = 0; i < 6; i++) {
+        currentColors[i] = hexToRgb(target.substr(i * 6, 6));
+      }
+      const inputs = controlsDiv.querySelectorAll('input[type="color"]');
+      inputs.forEach((inp, i) => { inp.value = rgbToHex(...currentColors[i]); });
       render();
       updateCode();
     });
 
-    const text = document.createElement('span');
-    text.textContent = `Color ${i + 1}`;
-
-    row.appendChild(orig);
-    row.appendChild(input);
-    row.appendChild(text);
-    controlsDiv.appendChild(row);
-  });
-
-  const reset = document.createElement('button');
-  reset.textContent = 'Reset Colors';
-  reset.addEventListener('click', () => {
-    currentColors = originalColors.map(c => [...c]);
-    buildControls();
-    render();
-    updateCode();
-  });
-  controlsDiv.appendChild(reset);
-}
-
-function render() {
-  const out = ctx.createImageData(canvas.width, canvas.height);
-  for (let i = 0, p = 0; i < out.data.length; i += 4, p++) {
-    const idx = pixelIndexMap[p];
-    if (idx === -1) {
-      out.data[i + 3] = 0;
-    } else {
-      const [r, g, b] = currentColors[idx];
-      out.data[i] = r;
-      out.data[i + 1] = g;
-      out.data[i + 2] = b;
-      out.data[i + 3] = originalPixels[i + 3];
+    function startAutosave() {
+      setInterval(() => {
+        const code = codeInput.value;
+        if (/^[0-9a-fA-F]{36}$/.test(code)) {
+          try { localStorage.setItem(STORAGE_KEY, code); } catch (e) { }
+        }
+      }, 5000);
     }
-  }
-  ctx.putImageData(out, 0, 0);
-}
-
-function updateCode() {
-  codeInput.value = currentColors
-    .map(([r, g, b]) => rgbToHex(r, g, b).slice(1))
-    .join('');
-}
-
-// Reactive: as the user types/pastes, apply immediately when valid
-codeInput.addEventListener('input', () => {
-  if (!pixelIndexMap) return;
-  const code = codeInput.value.trim().replace(/^#/, '');
-  if (!/^[0-9a-fA-F]{36}$/.test(code)) return; // ignore until valid
-  for (let i = 0; i < 6; i++) {
-    currentColors[i] = hexToRgb(code.substr(i * 6, 6));
-  }
-  // Update color picker swatches without rebuilding the whole list
-  const inputs = controlsDiv.querySelectorAll('input[type="color"]');
-  inputs.forEach((inp, i) => {
-    inp.value = rgbToHex(...currentColors[i]);
-  });
-  render();
-});
-
-document.getElementById('copy').addEventListener('click', () => {
-  codeInput.select();
-  navigator.clipboard.writeText(codeInput.value);
-});
-
-document.getElementById('reset-default').addEventListener('click', () => {
-  if (!pixelIndexMap) return;
-  const target = (INITIAL_CODE && /^[0-9a-fA-F]{36}$/.test(INITIAL_CODE))
-    ? INITIAL_CODE
-    : originalColors.map(([r, g, b]) => rgbToHex(r, g, b).slice(1)).join('');
-  for (let i = 0; i < 6; i++) {
-    currentColors[i] = hexToRgb(target.substr(i * 6, 6));
-  }
-  const inputs = controlsDiv.querySelectorAll('input[type="color"]');
-  inputs.forEach((inp, i) => { inp.value = rgbToHex(...currentColors[i]); });
-  render();
-  updateCode();
-});
-
-function startAutosave() {
-  setInterval(() => {
-    const code = codeInput.value;
-    if (/^[0-9a-fA-F]{36}$/.test(code)) {
-      try { localStorage.setItem(STORAGE_KEY, code); } catch (e) {}
-    }
-  }, 5000);
-}
-</script>
+  </script>
 
 </body>
+
 </html>
