@@ -3,6 +3,7 @@ title: "Quantum computing for dummies"
 description: "Notes to myself in the future"
 pubDate: 'May 17 2025'
 tags: ['lecture', 'math']
+priority: -1
 ---
 
 I'm not a physicist, but I am fascinated by quantum mechanics. Although [nobody understands quantum mechanics](https://www.youtube.com/watch?v=w3ZRLllWgHI), I've taken several courses on quantum information theory and quantum computing, and I hope I will be able to pass on my limited, misguided, and overly simplified understanding though this article.

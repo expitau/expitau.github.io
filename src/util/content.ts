@@ -13,6 +13,7 @@ export const blog = (await getCollection("blog"))
         (a, b) =>
             b.data.pubDate.getTime() - a.data.pubDate.getTime(),
     )
+    .filter((p) => (p.data.priority || 0) >= 0);
 
 export default {
     projects: projects,

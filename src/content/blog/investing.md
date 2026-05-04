@@ -3,6 +3,7 @@ title: "Mathematically Investing"
 description: "A logical approach to portfolio selection"
 pubDate: 'May 19 2025'
 tags: ['lecture', 'finance']
+priority: -1
 ---
 
 There is a ridiculous amount of misinformation about the stock market on the internet. This isn't suprising, as when everyone finds patterns in the random noise, and look at huge returns in cryptocurrencies and derivatives, it's very easy to draw false conclusions and pull from a variety of fallacies to justify making poor financial decisions. How do you actually decide what to invest in though? What is rational and what's a scam? Who can you trust? Why do the line go up? I'd like to offer some of my insights and explain a logical, rigorous, step-by-step approach to investing. 
