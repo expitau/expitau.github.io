@@ -1,0 +1,57 @@
+---
+import Icon from "../../components/Icon.astro";
+import ImageCard from "../../components/ImageCard.astro";
+import Layout from "../../layouts/main.astro";
+
+import { projects } from "../../util/content";
+
+import { formatDate } from "../../util/helpers";
+---
+
+<Layout title="Projects">
+    <a
+        href="/"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: absolute; top: 2rem; left: 2rem;"
+    >
+        <Icon type="arrowback" width="16px" height="16px" />
+        Home
+    </a>
+
+    <div
+        style=" width: 90%; max-width: 50rem; padding-top: 6rem; padding-bottom: 12rem;"
+    >
+        <h1 style="text-align: center;">Projects</h1>
+        <p style="text-align: center;">
+            Here are a few of my completed personal projects, you can find more
+            on my <a href="https://github.com/expitau">Github</a>
+        </p>
+        <div
+            style="margin-top: 4rem; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; gap: 0.5rem; padding: 0;"
+        >
+            {
+                projects.map((project) => (
+                    <a href={project.data.url}>
+                        <ImageCard
+                            image={project.data.image}
+                            style="width: 14rem; height: 18rem"
+                        >
+                            <div style="position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem;">
+                                <span>{formatDate(project.data.date)}</span>
+                            </div>
+                            <img
+                                src={project.data.image}
+                                style="width: 6rem; height: 6rem; object-fit: contain; margin-top: 2.5rem;"
+                            />
+                            <div style="position: absolute; bottom: 0;">
+                                <h3 style="margin: 0">{project.data.title}</h3>
+                                <p style="margin-bottom: 0">
+                                    {project.data.description}
+                                </p>
+                            </div>
+                        </ImageCard>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</Layout>

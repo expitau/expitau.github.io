@@ -1,48 +1,63 @@
 ---
-import BackButton from "../../components/BackButton.astro";
 import Layout from "../../layouts/main.astro";
-import Panel from "../../components/Panel.astro";
 import Tag from "../../components/Tag.astro";
 import { formatDate } from "../../util/helpers";
 
 import { blog } from "../../util/content";
+import { render } from "astro:content";
+import Icon from "../../components/Icon.astro";
 
 export function getStaticPaths() {
     return blog.map((post) => {
-        return { params: { slug: post.slug } };
+        return { params: { slug: post.id } };
     });
 }
 
 const { slug } = Astro.params;
-const post = blog.find((post) => post.slug === slug);
-const { Content } = await post.render();
+const post = blog.find((post) => post.id === slug);
+if (!post) {
+    return new Response("Not found", { status: 404 });
+}
+const { Content } = await render(post);
 ---
 
 <Layout title="Blog">
+    <style>
+        .backarrow {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .backarrow:hover {
+            color: var(--text);
+            transition:
+                color 0.2s ease-in-out,
+                transform 0.2s ease-in-out;
+        }
+
+        .backarrow svg {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .backarrow:hover svg {
+            transform: translateX(-3px);
+        }
+    </style>
+    
     <a
         href="/blog"
-        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 2rem;"
+        class="backarrow"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem;"
     >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            width="24px"
-            height="24px"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
-        </svg>
+        <Icon type="arrowback" width="18px" height="18px" />
         Blog
     </a>
-    <div style="width: 90%; max-width: 50rem; padding-bottom: 12rem; padding-top: 6rem">
+    <div
+        style="width: 90%; max-width: 50rem; padding-bottom: 12rem; padding-top: 6rem"
+    >
         <h1 style="text-align: center; margin-bottom: 0">{post.data.title}</h1>
         <h2 style="text-align: center; margin-top: 0">
-            {formatDate(post.data.pubDate, true)}
+            {formatDate(post.data.date, true)}
         </h2>
         <div
             style="display: flex; flex-direction: row; justify-content: center; gap: 0.5rem"

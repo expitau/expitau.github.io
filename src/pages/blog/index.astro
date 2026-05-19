@@ -1,61 +1,160 @@
 ---
-import BackButton from "../../components/BackButton.astro";
-import BlogCard from "../../components/BlogCard.astro";
-import CardLink from "../../components/CardLink.astro";
-import Tag from "../../components/Tag.astro";
 import Layout from "../../layouts/main.astro";
 
 import { blog } from "../../util/content";
-
-import { formatDate } from "../../util/helpers";
+import Icon from "../../components/Icon.astro";
+import Tag from "../../components/Tag.astro";
 ---
 
 <Layout title="Blog">
     <style>
-        #blog-list {
+        .blog-list {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            padding: 0;
         }
 
-        #blog-list h3 {
-            margin: 1rem 0 0.5rem 0;
+        .blog-list a {
+            transition: all 0.1s ease;
+            position: relative;
+        }
+
+        .blog-list a::before {
+            content: "";
+            position: absolute;
+            left: -1rem;
+            top: 40%;
+            width: 2px;
+            height: 1rem;
+            display: block;
+            background: var(--text);
+            opacity: 0.5;
+            transition: all 0.2s ease;
+        }
+
+        .blog-list a:hover::before {
+            opacity: 1;
+            height: 80%;
+            top: 10%;
+        }
+
+        .blog-list a:hover {
+            color: var(--text-highlight);
+            opacity: 1;
+            /* transform: translateY(-3px); */
+        }
+
+        .blog-list a .blog-arrow {
+            opacity: 0.5;
+        }
+
+        .blog-list a:hover .blog-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+            transition: all 0.2s ease;
+        }
+
+        hr {
+            width: 100%;
+        }
+
+        .backarrow {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .backarrow:hover {
+            color: var(--text);
+            transition:
+                color 0.2s ease-in-out,
+                transform 0.2s ease-in-out;
+        }
+
+        .backarrow svg {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .backarrow:hover svg {
+            transform: translateX(-3px);
         }
     </style>
-
     
     <a
         href="/"
-        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: absolute; top: 2rem; left: 2rem;"
+        class="backarrow"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem;"
     >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            width="24px"
-            height="24px"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"></path>
-        </svg>
+        <Icon type="arrowback" width="18px" height="18px" />
         Home
     </a>
-    <div style=" width: 90%; max-width: 50rem; padding-top: 6rem; padding-bottom: 12rem;">
-
-    <h1 style="text-align: center;">Blog</h1>
-    <div id="blog-list" style="margin-top: 4rem;">
-        {
-            blog.map((post) => {
-                return <a style="display: flex; flex-direction: row; gap: 1rem;" href={`/blog/${post.slug}`}>
-                    <h2>{post.data.title}</h2>
-                </a>;
-            })
-        }
-    </div>
+    <div
+        style=" width: 90%; max-width: 50rem; padding-top: 6rem; padding-bottom: 12rem;"
+    >
+        <h1 style="text-align: center;">Blog</h1>
+        <div
+            class="blog-list"
+            style="display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem;"
+        >
+            {
+                Object.entries(
+                    Object.groupBy(blog, (post) =>
+                        post.data.date?.getFullYear(),
+                    ),
+                )
+                    .sort((a, b) => +b[0] - +a[0])
+                    .map(([year, posts]) => {
+                        return (
+                            <div>
+                                <h2 style="margin-bottom: 0">{year}</h2>
+                                <hr style="color: white; opacity: 0.15" />
+                                <div style="display: flex; flex-direction: column; margin-left: 1rem; padding-top: 0.75rem; gap: 1.5rem">
+                                    {posts
+                                        ?.sort(
+                                            (a, b) =>
+                                                b.data.date?.getTime() -
+                                                a.data.date?.getTime(),
+                                        )
+                                        ?.map((post) => {
+                                            return (
+                                                <a href={`/blog/${post.id}/`}>
+                                                    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                                                        <div>
+                                                            <div style="display: flex; flex-direction: row; align-items: baseline; gap: 0.5rem;">
+                                                                <h3 style="margin: 0;">
+                                                                    {
+                                                                        post
+                                                                            .data
+                                                                            .title
+                                                                    }
+                                                                </h3>
+                                                                {(
+                                                                    post.data
+                                                                        .tags ||
+                                                                    []
+                                                                ).map((tag) => (
+                                                                    <Tag
+                                                                        name={
+                                                                            tag
+                                                                        }
+                                                                    />
+                                                                ))}
+                                                            </div>
+                                                            <p>
+                                                                {
+                                                                    post.data
+                                                                        .description
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    <Icon type="arrow" width="24px" height="24px" style="flex: none; color: white" class="blog-arrow" />
+                                                    </div>
+                                                </a>
+                                            );
+                                        })}
+                                </div>
+                            </div>
+                        );
+                    })
+            }
+        </div>
     </div>
 </Layout>

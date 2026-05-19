@@ -1,9 +1,8 @@
+# 'A serverless browser that holds over 6.5 million recipes'
 title: 'Infinite Craft Wiki'
 description: 'Recipe database for Infinite Craft'
-longDescription: 'A serverless browser that holds over 6.5 million recipes'
-pubDate: 'Jul 30 2024'
-heroImage: '/projects/InfiniteCraft.png'
-liveUrl: 'https://expitau.github.io/InfiniteCraftWiki'
-github: 'https://api.github.com/repos/expitau/InfiniteCraftWiki'
-url: 'https://github.com/expitau/InfiniteCraftWiki'
-priority: 1
+date: 'Jul 30 2024'
+image: '/projects/InfiniteCraft2.png'
+url: 'https://expitau.github.io/InfiniteCraftWiki'
+github: 'https://github.com/expitau/InfiniteCraftWiki'
+priority: 10

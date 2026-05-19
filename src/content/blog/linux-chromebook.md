@@ -1,7 +1,7 @@
 ---
 title: 'Running Linux on a Chromebook'
-description: "Making chromebooks actually useful"
-pubDate: 'Jan 03 2024'
+description: "How to flash CoreBoot and install Linux on a Chromebook"
+date: 'Jan 03 2024'
 tags: ['tutorial', 'tech']
 ---
 

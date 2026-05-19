@@ -1,7 +1,7 @@
 ---
-title: "Go is a bad language"
-description: "What makes a programming language great"
-pubDate: 'Jul 11 2024'
+title: "My problems with Golang"
+description: "Why I will always choose Rust over Go for new projects"
+date: 'Jul 11 2024'
 tags: ['opinion', 'tech']
 ---
 
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-Obviously, it's not ideal to have a ton of leftover debug variables and import statements all over your codebase, but this is what warnings are for! There is no reason that the above code should not even be able to *compile*. This only works to slow down developers for no reason, when debugging I am constantly adding and removing variables and statements, so needing to find all unused variables every time I compile is almost as bad as C or PHP semicolons
+Why? Because x is an unused variable. Obviously, it's not ideal to have a ton of leftover debug variables and import statements all over your codebase, but this is what warnings are for! There is no reason that the above code should not even be able to *compile*. This only works to slow down developers for no reason, when debugging I am constantly adding and removing variables and statements, so needing to find all unused variables every time I compile is almost as bad as C or PHP semicolons
 
 ## Issue 3 - Types
 

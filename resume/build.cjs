@@ -28,7 +28,8 @@ app.listen(PORT, async () => {
 
   // Move index.html and resume.pdf to ../public/resume
   fs.copyFileSync('build/index.html', '../public/resume/index.html');
-  fs.copyFileSync('build/resume.pdf', '../public/resume/Nathan_DSilva_Resume_2024.pdf');
+  fs.copyFileSync('build/resume.pdf', '../public/resume/resume.pdf');
+  fs.copyFileSync('build/resume.pdf', '../public/resume/Nathan_DSilva_Resume_2026.pdf');
 
   process.exit()
 });
@@ -77,6 +78,8 @@ async function modifyResume() {
   const page = pages[0]
   const allLinks = []
   const textOpacity = 0
+  const { width, height } = page.getSize()
+  currentOffset = height
 
   const createLink = (uri, rect) => {
       let link = page.doc.context.register(
@@ -98,19 +101,20 @@ async function modifyResume() {
       page.node.set(PDFName.of('Annots'), pdfDoc.context.obj(allLinks));
   }
 
-  const { width, height } = page.getSize()
-  page.drawText("# " + data.header.name, {
-      x: -3,
-      y: height - 55,
-      size: 35,
+  currentOffset -= 55
+  page.drawText(data.header.name, {
+      x: 26,
+      y: currentOffset,
+      size: 34.5,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
 
+  currentOffset -= 16
   page.drawText(data.header.description, {
       x: 26,
-      y: height - 73,
+      y: currentOffset,
       size: 11,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
@@ -121,16 +125,6 @@ async function modifyResume() {
   createLink('https://www.linkedin.com/in/nathan-dsilva/', [width - 175, height - 51, width - 95, height - 66]);
   createLink('https://expitau.com', [width - 94, height - 51, width - 20, height - 66]);
 
-  page.drawText('Email: ', {
-      x: width - 190,
-      y: height - 42,
-      size: 2,
-      lineHeight: 2,
-      maxWidth: 11,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      opacity: textOpacity,
-  })
   page.drawText(data.header.email, {
       x: width - 186,
       y: height - 46,
@@ -139,16 +133,7 @@ async function modifyResume() {
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
-  page.drawText('\nLocation: ', {
-      x: width - 90,
-      y: height - 42,
-      size: 2,
-      lineHeight: 2,
-      maxWidth: 11,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      opacity: textOpacity,
-  })
+  
   page.drawText(data.header.address, {
       x: width - 80,
       y: height - 46,
@@ -156,17 +141,6 @@ async function modifyResume() {
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
-  })
-
-  page.drawText('Github: ', {
-      x: width - 225,
-      y: height - 57,
-      size: 2,
-      lineHeight: 2,
-      maxWidth: 11,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      opacity: textOpacity,
   })
 
   page.drawText(data.header.github, {
@@ -177,17 +151,7 @@ async function modifyResume() {
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
-  page.drawText('LinkedIn: ', {
-      x: width - 170,
-      y: height - 57,
-      size: 2,
-      lineHeight: 2,
-      maxWidth: 11,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      opacity: textOpacity,
-  })
-
+  
   page.drawText(data.header.linkedin, {
       x: width - 157,
       y: height - 61,
@@ -195,16 +159,6 @@ async function modifyResume() {
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
-  })
-  page.drawText('Website: ', {
-      x: width - 90,
-      y: height - 57,
-      size: 2,
-      lineHeight: 2,
-      maxWidth: 11,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      opacity: textOpacity,
   })
 
   page.drawText(data.header.website, {
@@ -216,30 +170,32 @@ async function modifyResume() {
       opacity: textOpacity
   })
 
-  page.drawText('## Work Experience', {
-      x: 9,
-      y: height - 131,
+  currentOffset -= 60
+  page.drawText('Work Experience', {
+      x: 26,
+      y: currentOffset,
       size: 13,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
 
-  let offsets = [0, 74, 119, 192, 212]
+  currentOffset -= 25
+  let offsets = [0, 60, 60, 44, 73, 20]
   for (i in data.experience) {
       let job = data.experience[i]
-      let currentOffset = offsets.shift()
-      page.drawText((1 + Number(i)) + ". **" + job.title + "** @ " + job.company, {
-          x: 11,
-          y: height - 155 - currentOffset,
-          size: 9,
+      currentOffset -= offsets.shift()
+      page.drawText((1 + Number(i)) + ". " + job.title + " @ " + job.company, {
+          x: 17,
+          y: currentOffset,
+          size: 8.5,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
           opacity: textOpacity
       })
       page.drawText(job.dates, {
           x: width - 115,
-          y: height - 155 - currentOffset,
+          y: currentOffset,
           size: 9,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -247,7 +203,7 @@ async function modifyResume() {
       })
       job.responsibilities && page.drawText("\t- " + (job.responsibilities || []).join("\n\t- "), {
           x: 19,
-          y: height - 169 - currentOffset,
+          y: currentOffset - 14.5,
           size: 8.8,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -257,23 +213,24 @@ async function modifyResume() {
       })
   }
 
-  let PERSONAL_PROJECTS_START = 397
-  page.drawText('## Personal Projects', {
-      x: 9,
-      y: height - PERSONAL_PROJECTS_START,
+  currentOffset -= 30
+  page.drawText('Personal Projects', {
+      x: 26,
+      y: currentOffset,
       size: 13,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
 
+  currentOffset -= 23
   offsets = [0, 57]
   for (i in data.projects[0]) {
       let project = data.projects[0][i]
-      let currentOffset = offsets.shift()
-      page.drawText((1 + Number(i)) + ". **" + project.name + "**", {
-          x: 11,
-          y: height - PERSONAL_PROJECTS_START - 23 - currentOffset,
+      currentOffset -= offsets.shift()
+      page.drawText((1 + Number(i)) + ". " + project.name + "", {
+          x: 17,
+          y: currentOffset,
           size: 9,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -281,7 +238,7 @@ async function modifyResume() {
       })
       page.drawText(project.genre, {
           x: 26,
-          y: height - PERSONAL_PROJECTS_START - 33 - currentOffset,
+          y: currentOffset - 11,
           size: 9,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -289,7 +246,7 @@ async function modifyResume() {
       })
       page.drawText(project.tech.join(', '), {
           x: width - 145,
-          y: height - PERSONAL_PROJECTS_START - 33 - currentOffset,
+          y: currentOffset - 11,
           size: 9,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -297,7 +254,7 @@ async function modifyResume() {
       })
       page.drawText(project.description, {
           x: 26,
-          y: height - PERSONAL_PROJECTS_START - 46 - currentOffset,
+          y: currentOffset - 24,
           size: 9,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -307,20 +264,33 @@ async function modifyResume() {
       })
   }
 
-  let SKILLS_START = 554
-  page.drawText('## Skills', {
-      x: 9,
-      y: height - SKILLS_START,
+  currentOffset -= 77
+  page.drawText('Skills', {
+      x: 26,
+      y: currentOffset,
       size: 13,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
 
-  page.drawText('**Frontend & Web Development** - ' + data.skills_summary.frontend.join(', '), {
-      x: 13,
-      y: height - SKILLS_START - 25,
-      size: 9.1,
+  currentOffset -= 25
+  page.drawText('Frontend & Web Development - ' + data.skills_summary.frontend.join(', '), {
+      x: 26,
+      y: currentOffset,
+      size: 9.3,
+      font: helveticaFont,
+      color: rgb(0.95, 0.1, 0.1),
+      opacity: textOpacity,
+      maxWidth: 575,
+      lineHeight: 12.5
+  })
+  
+  currentOffset -= 15
+  page.drawText('Programming Languages - ' + data.skills_summary.languages.join(', '), {
+      x: 26,
+      y: currentOffset,
+      size: 9.3,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity,
@@ -328,10 +298,11 @@ async function modifyResume() {
       lineHeight: 12.5
   })
 
-  page.drawText('**Programming Languages** - ' + data.skills_summary.languages.join(', '), {
-      x: 18,
-      y: height - SKILLS_START - 37,
-      size: 9.1,
+  currentOffset -= 13
+  page.drawText('Infrastructure & Tools - ' + data.skills_summary.tools.join(', '), {
+      x: 26,
+      y: currentOffset,
+      size: 9.3,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity,
@@ -339,10 +310,11 @@ async function modifyResume() {
       lineHeight: 12.5
   })
 
-  page.drawText('**Infrastructure & Tools** - ' + data.skills_summary.tools.join(', '), {
-      x: 18,
-      y: height - SKILLS_START - 50,
-      size: 9.1,
+  currentOffset -= 13
+  page.drawText('Soft Skills - ' + data.skills_summary.soft.join(', '), {
+      x: 26,
+      y: currentOffset,
+      size: 9.3,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity,
@@ -350,34 +322,23 @@ async function modifyResume() {
       lineHeight: 12.5
   })
 
-  page.drawText('**Soft Skills** - ' + data.skills_summary.soft.join(', '), {
-      x: 18,
-      y: height - SKILLS_START - 64,
-      size: 9.1,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      opacity: textOpacity,
-      maxWidth: 575,
-      lineHeight: 12.5
-  })
-
-  let EDUCATION_START = 647
-  page.drawText('## Education', {
-      x: 9,
-      y: height - EDUCATION_START,
+  currentOffset -= 28
+  page.drawText('Education', {
+      x: 26,
+      y: currentOffset,
       size: 13,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
       opacity: textOpacity
   })
-
+  currentOffset -= 25
   offsets = [0, 33]
   for (i in data.education) {
       let edu = data.education[i]
-      let currentOffset = offsets.shift()
-      page.drawText((1 + Number(i)) + ". **" + edu.name + "** " + edu.dates, {
-          x: 11,
-          y: height - EDUCATION_START - 25 - currentOffset,
+      currentOffset -= offsets.shift()
+      page.drawText((1 + Number(i)) + ". " + edu.name + " " + edu.dates, {
+          x: 17,
+          y: currentOffset,
           size: 9,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),
@@ -385,7 +346,7 @@ async function modifyResume() {
       })
       page.drawText(edu.description, {
           x: 27,
-          y: height - EDUCATION_START - 37 - currentOffset,
+          y: currentOffset - 13,
           size: 8.8,
           font: helveticaFont,
           color: rgb(0.95, 0.1, 0.1),

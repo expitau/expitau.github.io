@@ -6,7 +6,7 @@ bio:
   Highly motivated software developer with several years of professional experience and a proven ability to deliver high-quality, maintainable code. Enthusiastic about programming, with dozens of personal projects and a diverse range of interests. Seeking a challenging role to improve technical skills and contribute to innovative projects. 
 header:
   name: Nathan DSilva
-  description: University of Waterloo - Computational Mathematics
+  description: University of Waterloo - Combinatorics & Optimization
   email: expitau@gmail.com
   address: Waterloo ON
   linkedin: 'nathan-dsilva'
@@ -93,6 +93,18 @@ education:
     description: >
       Studied theoretical physics & cryptography at the Lazaridis Quantum Nano Center and Perimeter Institute.
 experience:
+  - title: Lead Infrastructure Developer
+    capacity: 12 months
+    location: Vancouver, BC
+    company: Nexa Ligo Inc.
+    dates: Jun 2025 - Present
+    responsibilities:
+      - > 
+        Lorem ipsum
+      - > 
+        Lorem ipsum
+      - > 
+        Lorem ipsum
   - title: Lead Developer
     capacity: 8 months
     location: Waterloo, ON
@@ -100,13 +112,13 @@ experience:
     dates: May 2024 - Dec 2024
     responsibilities:
       - >
-        Primary technical lead for the entire project, responsible for architecture, design, and implementation of new features.
+        Primary technical lead for the project, responsible for architecture, design, and implementation of new features.
       - > 
         Independently led teams of 4-7 developers to overhaul the full-stack application written in Go and React.js.
       - > 
         Pushed project timelines forward by 6 months by significantly improving development speed and code quality.
-      - >
-        Conducted code reviews, mentored developers, and worked with clients to determine project requirements and scope.
+      # - >
+      #   Conducted code reviews, mentored developers, and worked with clients to determine project requirements and scope.
   - title: Machine Learning Engineer (Part-time)
     capacity: 4 months
     location: Waterloo, ON

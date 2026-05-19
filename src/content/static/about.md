@@ -1,6 +1,4 @@
-# About me
 ## Hello!
-
 
 My name is Nathan, I'm a highly motivated software developer with several years of professional experience and a proven ability to write high-quality maintainable code when I can, and fast solution-oriented programs when I must.
 
