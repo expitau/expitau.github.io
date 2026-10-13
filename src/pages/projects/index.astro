@@ -9,11 +9,13 @@ import { formatDate } from "../../util/helpers";
 ---
 
 <Layout title="Projects">
+    
     <a
         href="/"
-        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: absolute; top: 2rem; left: 2rem;"
+        class="backarrow"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem; text-decoration: none;"
     >
-        <Icon type="arrowback" width="16px" height="16px" />
+        <Icon type="arrowback" width="18px" height="18px" />
         Home
     </a>
 
@@ -35,7 +37,7 @@ import { formatDate } from "../../util/helpers";
                             image={project.data.image}
                             style="width: 14rem; height: 18rem"
                         >
-                            <div style="position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem;">
+                            <div style="position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem; color: var(--text-secondary)">
                                 <span>{formatDate(project.data.date)}</span>
                             </div>
                             <img

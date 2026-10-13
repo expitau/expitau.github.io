@@ -40,7 +40,6 @@ import Tag from "../../components/Tag.astro";
         .blog-list a:hover {
             color: var(--text-highlight);
             opacity: 1;
-            /* transform: translateY(-3px); */
         }
 
         .blog-list a .blog-arrow {
@@ -56,36 +55,18 @@ import Tag from "../../components/Tag.astro";
         hr {
             width: 100%;
         }
-
-        .backarrow {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        .backarrow:hover {
-            color: var(--text);
-            transition:
-                color 0.2s ease-in-out,
-                transform 0.2s ease-in-out;
-        }
-
-        .backarrow svg {
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .backarrow:hover svg {
-            transform: translateX(-3px);
-        }
     </style>
+    
     
     <a
         href="/"
         class="backarrow"
-        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem;"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem; text-decoration: none;"
     >
         <Icon type="arrowback" width="18px" height="18px" />
         Home
     </a>
+
     <div
         style=" width: 90%; max-width: 50rem; padding-top: 6rem; padding-bottom: 12rem;"
     >
@@ -115,7 +96,7 @@ import Tag from "../../components/Tag.astro";
                                         )
                                         ?.map((post) => {
                                             return (
-                                                <a href={`/blog/${post.id}/`}>
+                                                <a href={`/blog/${post.id}/`} style="text-decoration: none;">
                                                     <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
                                                         <div>
                                                             <div style="display: flex; flex-direction: row; align-items: baseline; gap: 0.5rem;">

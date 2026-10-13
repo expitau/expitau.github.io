@@ -22,32 +22,11 @@ const { Content } = await render(post);
 ---
 
 <Layout title="Blog">
-    <style>
-        .backarrow {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        .backarrow:hover {
-            color: var(--text);
-            transition:
-                color 0.2s ease-in-out,
-                transform 0.2s ease-in-out;
-        }
-
-        .backarrow svg {
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .backarrow:hover svg {
-            transform: translateX(-3px);
-        }
-    </style>
     
     <a
         href="/blog"
         class="backarrow"
-        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem;"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem; text-decoration: none;"
     >
         <Icon type="arrowback" width="18px" height="18px" />
         Blog
@@ -71,31 +50,3 @@ const { Content } = await render(post);
         <br />
     </div>
 </Layout>
-<script is:inline>
-    console.log("Running");
-    // Get all elements with the class 'MathJax'
-    var mathJaxElements = document.querySelectorAll(".MathJax");
-
-    console.log(mathJaxElements);
-
-    mathJaxElements.forEach(function (element) {
-        // Get the parent node of the current element
-        var parent = element.parentNode;
-
-        // Get all child nodes of the parent node
-        var siblings = Array.prototype.slice.call(parent.childNodes);
-
-        // Check if there are any text nodes that are not empty
-        var hasTextSiblings = siblings.some(function (sibling) {
-            return (
-                sibling.nodeType === Node.TEXT_NODE &&
-                sibling.textContent.trim().length > 0
-            );
-        });
-
-        // If there are no text siblings, add the 'MathJax-block' class
-        if (!hasTextSiblings) {
-            element.classList.add("MathJax-block");
-        }
-    });
-</script>

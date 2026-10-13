@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/main.astro";
+import Icon from "../components/Icon.astro";
 
 import * as AboutContent from "../content/static/about.md"
-import Icon from "../components/Icon.astro";
 
 const { Content } = AboutContent;
 ---
@@ -49,31 +49,3 @@ const { Content } = AboutContent;
         <br />
     </div>
 </Layout>
-<script is:inline>
-    console.log("Running");
-    // Get all elements with the class 'MathJax'
-    var mathJaxElements = document.querySelectorAll(".MathJax");
-
-    console.log(mathJaxElements);
-
-    mathJaxElements.forEach(function (element) {
-        // Get the parent node of the current element
-        var parent = element.parentNode;
-
-        // Get all child nodes of the parent node
-        var siblings = Array.prototype.slice.call(parent.childNodes);
-
-        // Check if there are any text nodes that are not empty
-        var hasTextSiblings = siblings.some(function (sibling) {
-            return (
-                sibling.nodeType === Node.TEXT_NODE &&
-                sibling.textContent.trim().length > 0
-            );
-        });
-
-        // If there are no text siblings, add the 'MathJax-block' class
-        if (!hasTextSiblings) {
-            element.classList.add("MathJax-block");
-        }
-    });
-</script>

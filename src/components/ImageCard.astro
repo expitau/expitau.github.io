@@ -4,7 +4,7 @@ const { image, style } = Astro.props;
 
 <div class="card" style={style}>
     <div class="card-bg">
-        <img src={image} class="card-bg-image" style="object-fit: cover; object-position: center; width: 100%; height: 100%"/>
+        <img src={image} class="card-bg-image" style="width: 100%; height: 100%"/>
     </div>
     <div style="position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center;">
         <slot />
@@ -33,6 +33,6 @@ const { image, style } = Astro.props;
         z-index: -1;
     }
     .card-bg-image {
-        filter: blur(50px);
+        filter: blur(70px);
     }
 </style>

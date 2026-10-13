@@ -8,7 +8,6 @@ import Tag from "../components/Tag.astro";
 ---
 
 <Layout title="Home">
-	<!-- For scrolling layout, if there is any vertical padding it will scroll before the #main-title is sticky -->
 	<style is:global>
 		main {
 			padding-top: 0;
@@ -41,7 +40,7 @@ import Tag from "../components/Tag.astro";
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
-			gap: calc(15vw - 6rem);
+			gap: min(calc(15vw - 6rem), 20rem);
 			width: 85%;
 		}
 
@@ -104,7 +103,6 @@ import Tag from "../components/Tag.astro";
 		#main-title--publickey {
 			color: var(--text-tertiary);
 			font-size: small;
-			/* display: flex; */
 			gap: 0.3rem;
 			cursor: pointer;
 			transition: color var(--transition-s) ease;
@@ -266,7 +264,6 @@ import Tag from "../components/Tag.astro";
 		.blog-list a:hover {
 			color: var(--text-highlight);
 			opacity: 1;
-			/* transform: translateY(-3px); */
 		}
 
 		.subtitle-carousel {
@@ -416,8 +413,8 @@ import Tag from "../components/Tag.astro";
 				types of problems arise at scale.
 			</p>
 			<p>
-				I recently graduated from the University of Waterloo, and I am
-				currently working as a Lead Software Developer for a
+				I've recently graduated from the University of Waterloo, and I
+				am working in Toronto, Canada as a lead software developer for a
 				stealth-mode startup. When I'm not tinkering with hardware or my
 				operating system, I'm working on side projects you can find on <a
 					href="https://github.com/expitau">my GitHub</a
@@ -433,7 +430,7 @@ import Tag from "../components/Tag.astro";
 								image={project.data.image}
 								style="width: 14rem; height: 18rem"
 							>
-								<div style="position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem;">
+								<div style="position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem; color: var(--text-secondary)">
 									<span>{formatDate(project.data.date)}</span>
 								</div>
 								<img
@@ -465,7 +462,10 @@ import Tag from "../components/Tag.astro";
 			>
 				{
 					blog.slice(0, 3).map((post) => (
-						<a href={`/blog/${post.id}/`}>
+						<a
+							href={`/blog/${post.id}/`}
+							style="text-decoration: none"
+						>
 							<div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
 								<div>
 									<div style="display: flex; flex-direction: row; align-items: baseline; gap: 0.5rem;">
@@ -500,7 +500,9 @@ import Tag from "../components/Tag.astro";
 				Interested in hiring me? Check out my resume! The following is
 				redacted for privacy, contact me for the full version.
 			</p>
-			<div style="display: flex; flex-direction: row; gap: 2rem; justify-content: center; margin-top: 2rem;">
+			<div
+				style="display: flex; flex-direction: row; gap: 2rem; justify-content: center; margin-top: 2rem;"
+			>
 				<a class="button" href="/resume/Nathan_DSilva_Resume_2024.pdf">
 					Download PDF
 				</a>
