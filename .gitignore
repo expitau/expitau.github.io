@@ -1,5 +1,6 @@
 # build files
 dist/
+resume/build
 
 # generated types
 .astro/
