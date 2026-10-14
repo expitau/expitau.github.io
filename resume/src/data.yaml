@@ -100,11 +100,11 @@ experience:
     dates: Jun 2025 - Present
     responsibilities:
       - > 
-        Lorem ipsum
-      - > 
-        Lorem ipsum
-      - > 
-        Lorem ipsum
+        Patented a novel proxy service that provides a runtime for browser extensions exclusively through a web portal.
+      - >
+        Architected and audited GDPR and CCPA compliance for 21 tenant businesses' data-handling pipelines. Identified and closed 6+ critical security risks across authentication services.
+      - >
+        Maintained and improved infrastructure as code (Terraform), ensuring scalability and uptime of services including CloudFront, Lambda, ECS, EKS, and RDS.
   - title: Lead Developer
     capacity: 8 months
     location: Waterloo, ON
@@ -127,6 +127,8 @@ experience:
     responsibilities:
       - > 
         Improved ECG diagnosis accuracy from 86.1% to 98.6% while simultaneously reducing model size by a factor of 250 times by architecting a neural network from scratch with PyTorch.
+      - >
+        Co-authored a research paper on utilizing machine-learning and 5G cellular networks for reducing patient diagnosis time.
   - title: Project Lead
     capacity: 8 months
     location: Vancouver, BC

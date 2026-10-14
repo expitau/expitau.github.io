@@ -114,7 +114,7 @@ async function modifyResume() {
   currentOffset -= 16
   page.drawText(data.header.description, {
       x: 26,
-      y: currentOffset,
+      y: currentOffset - 2,
       size: 11,
       font: helveticaFont,
       color: rgb(0.95, 0.1, 0.1),
@@ -181,7 +181,7 @@ async function modifyResume() {
   })
 
   currentOffset -= 25
-  let offsets = [0, 60, 60, 44, 73, 20]
+  let offsets = [0, 85, 60, 59, 73, 20]
   for (i in data.experience) {
       let job = data.experience[i]
       currentOffset -= offsets.shift()
