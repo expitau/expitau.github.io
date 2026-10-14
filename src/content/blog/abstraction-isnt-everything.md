@@ -1,7 +1,7 @@
 ---
 title: "Abstraction isn't everything"
-description: "When object-oriented programming fails"
-pubDate: 'Jun 26 2024'
+description: "Object oriented programming has several shortcomings that make it an outdated paradigm for software development."
+date: 'Jun 26 2024'
 tags: ['opinion', 'tech']
 ---
 

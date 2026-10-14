@@ -13,6 +13,11 @@ h3 {
     font-size: 18px;
 }
 
+h4 {
+    font-weight: 500;
+    font-size: 16px;
+}
+
 h1,
 h2,
 h3,
@@ -20,8 +25,7 @@ h4,
 h5,
 h6 {
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    /* border-bottom: 1px solid var(--text-secondary); */
+    margin-bottom: 0.5rem;
     color: var(--text);
     line-height: 1.25;
 }
@@ -45,28 +49,18 @@ br {
     margin-top: 2rem;
 }
 
-img {
-    border-radius: 0.5rem;
-    margin: 0.2rem;
-}
-
 ul {
     margin: 0;
 }
 
 a {
-    color: var(--link);
-    font-weight: bold;
+    color: var(--accent);
     display: inline-block;
     text-decoration: none;
-    transition:
-        transform var(--transition-s),
-        color var(--transition-s);
 }
 
-p a:hover {
+a:hover {
     text-decoration: underline;
-    transform: translateY(-0.2rem);
 }
 
 article .astro-code {
@@ -75,27 +69,10 @@ article .astro-code {
 }
 
 article blockquote {
-    /* background-color: #00000050; */
     margin: 0;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-    padding: 0.5rem 0.2rem 0.5rem 1rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem 0.2rem 0rem 0.4rem;
     border-left: 0.2rem solid var(--text-secondary);
-    /* border-radius: 0.5rem; */
-}
-
-article>* {
-    margin-bottom: 1rem;
-}
-
-article p:has(img) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-article p>img {
-    width: 80%
 }
 
 article .embed {
@@ -108,17 +85,65 @@ article .embed {
 
 }
 
-article .embed > iframe {
+article .embed>iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
 
-article > p > .MathJax-block{
+article>p>.MathJax-block {
     display: block;
     margin-inline: auto;
     width: fit-content;
     font-size: large;
     overflow-x: auto;
     max-width: 100%;
+}
+
+
+.copytooltip {
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--surface);
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    animation: fadeout 2s ease forwards;
+}
+
+.backarrow {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.backarrow:hover {
+    color: var(--text);
+    transition:
+        color 0.2s ease-in-out,
+        transform 0.2s ease-in-out;
+}
+
+.backarrow svg {
+    transition: transform 0.2s ease-in-out;
+}
+
+.backarrow:hover svg {
+    transform: translateX(-3px);
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }

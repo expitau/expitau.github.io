@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/main.astro";
 import { projects, blog } from "../util/content";
-import CardLink from "../components/CardLink.astro";
+import ImageCard from "../components/ImageCard.astro";
+import Icon from "../components/Icon.astro";
 import { formatDate } from "../util/helpers";
-import BlogCard from "../components/BlogCard.astro";
+import Tag from "../components/Tag.astro";
 ---
 
 <Layout title="Home">
-	<!-- For scrolling layout, if there is any vertical padding it will scroll before the #main-title is sticky -->
 	<style is:global>
 		main {
 			padding-top: 0;
@@ -15,31 +15,47 @@ import BlogCard from "../components/BlogCard.astro";
 		}
 	</style>
 	<style>
+		.view-more {
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			gap: 0.3rem;
+			transition: all var(--transition-s) ease;
+			color: var(--text-secondary);
+		}
+
+		.view-more:hover {
+			color: var(--text-highlight);
+		}
+
+		.view-more:hover svg {
+			transform: translateX(0px);
+			transition: all 0.2s ease;
+		}
+		.view-more:hover svg {
+			transform: translateX(5px);
+		}
+
 		#main-container {
 			display: flex;
 			flex-direction: row;
+			gap: min(calc(15vw - 6rem), 20rem);
 			justify-content: center;
-			gap: 4rem;
+			align-self: stretch;
+			margin-inline: 3rem;
 		}
 
 		#main-title {
 			padding: 10rem 0;
-			flex: 1;
+			width: 25rem;
 			position: sticky;
-			display: flex;
-			justify-content: center;
-			top: 0;
-			height: fit-content;
-			/* height: calc(100vh - 10rem - 10rem); */
-		}
-
-		#main-title-content {
+			flex: none;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			gap: 4rem;
-			height: 100%;
-			width: fit-content;
+			height: fit-content;
+			top: 0;
 		}
 
 		#main-title h1 {
@@ -47,7 +63,7 @@ import BlogCard from "../components/BlogCard.astro";
 		}
 
 		#main-title h2 {
-			font-size: min(5.5vw, 24px);
+			font-size: min(4vw, 20px);
 		}
 
 		#main-content > p {
@@ -56,7 +72,9 @@ import BlogCard from "../components/BlogCard.astro";
 
 		#main-content {
 			flex: 1;
-			padding: 11rem 0;
+			max-width: 40rem;
+			min-width: 0;
+			padding: 12rem 0;
 		}
 
 		#main-title--text {
@@ -77,7 +95,38 @@ import BlogCard from "../components/BlogCard.astro";
 
 		#main-title--social-links > a:hover {
 			color: var(--text);
+			transform: translateY(-0.1rem) scale(1.04);
+			transition:
+				color var(--transition-s) ease,
+				transform 0.3s ease;
+		}
+
+		#main-title--publickey {
+			color: var(--text-tertiary);
+			font-size: small;
+			gap: 0.3rem;
+			cursor: pointer;
 			transition: color var(--transition-s) ease;
+			position: relative;
+		}
+
+		#main-title--publickey:hover {
+			color: var(--text-secondary);
+		}
+
+		#main-title--publickey--name {
+			font-weight: bold;
+			position: absolute;
+			left: 0;
+			transform: translateX(-80%);
+			bottom: 2px;
+			opacity: 0;
+			transition: all var(--transition-s) ease-in-out;
+		}
+
+		#main-title--publickey:hover #main-title--publickey--name {
+			opacity: 1;
+			transform: translateX(-100%);
 		}
 
 		#main-nav {
@@ -99,7 +148,6 @@ import BlogCard from "../components/BlogCard.astro";
 				var(--transition-s) ease;
 			text-decoration: none;
 			font-weight: normal;
-			font-size: min(4vw, 16px);
 		}
 
 		#main-nav a:hover {
@@ -107,49 +155,45 @@ import BlogCard from "../components/BlogCard.astro";
 			font-weight: bold;
 		}
 
-		#main-nav a > :first-child {
+		#main-nav a::before {
+			content: "";
 			display: block;
 			background-color: var(--text-secondary);
 			height: 1px;
-			width: 24px;
+			width: 16px;
 			transition: width var(--transition-s) ease;
 		}
 
-		#main-nav a:hover > :first-child {
-			display: block;
+		#main-nav a:hover::before {
 			background-color: var(--text);
-			height: 1px;
-			width: 48px;
+			width: 32px;
 		}
 
 		#main-projects {
 			display: flex;
-			flex-direction: column;
+			justify-content: stretch;
 			gap: 1rem;
-			margin-bottom: 1rem;
-		}
+			margin-bottom: 1.5rem;
+			padding-top: 1rem;
+			padding-inline: 3rem;
+			margin-inline: -3rem;
 
-		#main-projects > * {
-			display: flex;
-			padding: 1rem;
-			text-align: left;
-			flex-direction: column;
-		}
+			-webkit-mask-image: linear-gradient(
+				to right,
+				transparent,
+				#000 5%,
+				#000 95%,
+				transparent
+			);
+			mask-image: linear-gradient(
+				to right,
+				transparent,
+				#000 5%,
+				#000 95%,
+				transparent
+			);
 
-		#main-projects > * > * {
-			margin-bottom: 0;
-		}
-
-		#main-projects > * > img {
-			margin-bottom: 1rem;
-		}
-
-		#main-projects .main-projects-card {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: flex-start;
-			gap: 0.5rem;
+			overflow-x: auto;
 		}
 
 		#resume-buttons {
@@ -157,27 +201,28 @@ import BlogCard from "../components/BlogCard.astro";
 			flex-direction: row;
 			gap: 2rem;
 			justify-content: center;
-			margin-top: 1rem;
+			margin-top: 2rem;
 		}
 
 		@media (max-width: 1100px) {
 			#main-container {
 				flex-direction: column;
+				align-items: center;
 				gap: 2rem;
 			}
 
 			#main-title {
-				position: relative;
-				height: fit-content;
 				padding: 4rem 0 0 0;
-			}
-
-			#main-title-content {
 				width: 100%;
+				position: static;
+				max-width: 40rem;
+				gap: 1rem;
+				align-items: center;
 			}
 
 			#main-content {
-				padding: 0 0 4rem 0;
+				padding: 0 0 12rem 0;
+				width: 100%;
 			}
 
 			#main-title--text {
@@ -186,175 +231,246 @@ import BlogCard from "../components/BlogCard.astro";
 				align-items: center;
 				gap: 3rem;
 				text-align: right;
-			}
-
-			#main-title--social-links {
-				margin: auto;
-				padding: 3rem 0;
+				width: 100%;
 			}
 		}
 
-		@media (max-width: 720px) {
-			#main-title h1,
-			#main-title h2,
-			#main-title p {
-				text-align: center;
-				margin: auto;
-				width: 100%;
-				padding-bottom: 0.5rem;
-			}
+		@media (max-width: 500px) {
 			#main-title {
-				margin: 8rem 0 0 0;
+				gap: 1rem;
 			}
+
 			#main-title--text {
-				flex-direction: column-reverse;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.subtitle-carousel {
+				text-align: center;
 			}
 
 			#main-nav {
 				flex-direction: row;
+				gap: 0rem 1rem;
 				justify-content: center;
-				gap: 2rem;
-				margin: 0;
-				width: 100vw;
-				position: fixed;
-				background: rgba(17, 17, 17, 0.6);
-				backdrop-filter: blur(15px);
-				border-radius: 10px;
-				top: 0;
-				padding: 1rem;
-				z-index: 100;
+				flex-wrap: wrap;
+				width: 100%;
 			}
 
-			#main-nav a > :first-child {
-				display: none !important;
+			#main-nav a::before {
+				display: none;
+			}
+
+			#main-title--publickey {
+				display: none;
+			}
+
+			#resume-buttons {
+				flex-direction: column;
 			}
 		}
 
-		@media (max-width: 460px) {
-			#resume-buttons {
-				flex-direction: column;
-				gap: 1rem;
+		.blog-list a {
+			transition: all 0.1s ease;
+			position: relative;
+		}
+
+		.blog-list a::before {
+			content: "";
+			position: absolute;
+			left: -1rem;
+			top: 40%;
+			width: 2px;
+			height: 1rem;
+			display: block;
+			background: var(--text);
+			opacity: 0.5;
+			transition: all 0.2s ease;
+		}
+
+		.blog-list a:hover::before {
+			opacity: 1;
+			height: 80%;
+			top: 10%;
+		}
+
+		.blog-list a:hover {
+			color: var(--text-highlight);
+			opacity: 1;
+		}
+
+		.subtitle-carousel {
+			height: 2rem;
+			position: relative;
+		}
+
+		.subtitle-carousel > * {
+			animation: slide 16s linear infinite;
+			white-space: nowrap;
+			margin-top: 0;
+		}
+
+		.subtitle-carousel > *:nth-child(1) {
+			animation-delay: -12s;
+		}
+
+		.subtitle-carousel > *:nth-child(2) {
+			animation-delay: -8s;
+		}
+
+		.subtitle-carousel > *:nth-child(3) {
+			animation-delay: -4s;
+		}
+
+		.subtitle-carousel > *:nth-child(4) {
+			animation-delay: 0s;
+		}
+
+		@keyframes slide {
+			0% {
+				transform: translateY(50%);
+				opacity: 0;
+			}
+			36% {
+				transform: translateY(50%);
+				opacity: 0;
+			}
+			38% {
+				transform: translateY(0%);
+				opacity: 1;
+			}
+			50% {
+				transform: translateY(0%);
+				opacity: 1;
+			}
+			60% {
+				transform: translateY(0%);
+				opacity: 1;
+			}
+			62% {
+				transform: translateY(-50%);
+				opacity: 0;
+			}
+			100% {
+				transform: translateY(-50%);
+				opacity: 0;
 			}
 		}
 	</style>
 	<div id="main-container">
 		<div id="main-title">
-			<div id="main-title-content">
-				<div id="main-title--text">
-					<div>
-						<h1 style="margin-top: 0">Nathan DSilva</h1>
-						<h2 style="margin-top: 0">Software Developer</h2>
+			<div id="main-title--text">
+				<div>
+					<h1 style="margin-top: 0; margin-bottom: 0.5rem;">
+						Nathan DSilva
+					</h1>
+					<div class="subtitle-carousel">
+						<h2 style="position: absolute; top: 0; width: 100%">
+							Software Developer
+						</h2>
+						<h2 style="position: absolute; top: 0; width: 100%">
+							Infrastructure Developer
+						</h2>
+						<h2 style="position: absolute; top: 0; width: 100%">
+							Machine Learning Developer
+						</h2>
+						<h2 style="position: absolute; top: 0; width: 100%">
+							Automation Developer
+						</h2>
 					</div>
-
-					<nav id="main-nav">
-						<li>
-							<a href="/about">
-								<span></span>
-								<span>About</span>
-							</a>
-						</li>
-						<li>
-							<a href="/projects">
-								<span></span>
-								<span>Projects</span>
-							</a>
-						</li>
-						<li>
-							<a href="/blog">
-								<span></span>
-								<span>Blog</span>
-							</a>
-						</li>
-						<li>
-							<a href="/resume/resume.pdf">
-								<span></span>
-								<span>Resume</span>
-							</a>
-						</li>
-					</nav>
 				</div>
 
-				<div id="main-title--social-links">
-					<a href="https://github.com/expitau" target="_blank">
-						<span class="sr-only">Follow me on Github</span>
-						<svg
-							viewBox="0 0 16 16"
-							aria-hidden="true"
-							width="24"
-							height="24"
-							fill="currentColor"
-						>
-							<path
-								fill="currentColor"
-								d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-							>
-							</path>
-						</svg>
-					</a>
+				<nav id="main-nav">
+					<li>
+						<a href="/about">
+							<span>About</span>
+						</a>
+					</li>
+					<li>
+						<a href="/projects">
+							<span>Projects</span>
+						</a>
+					</li>
+					<li>
+						<a href="/blog">
+							<span>Blog</span>
+						</a>
+					</li>
+					<li>
+						<a href="/resume/resume.pdf">
+							<span>Resume</span>
+						</a>
+					</li>
+				</nav>
+			</div>
 
-					<a
-						href="https://ca.linkedin.com/in/nathan-dsilva"
-						target="_blank"
-					>
-						<span class="sr-only">Follow me on Linkedin</span>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="currentColor"
-						>
-							<path
-								d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-							>
-							</path>
-						</svg>
-					</a>
+			<div id="main-title--social-links">
+				<a href="https://github.com/expitau" target="_blank">
+					<span class="sr-only">Github</span>
+					<Icon type="github" />
+				</a>
 
-					<a href="mailto:expitau@gmail.com" target="_blank">
-						<span class="sr-only">Send me an email</span>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							height="24"
-							viewBox="100 -860 800 800"
-							width="24"
-							fill="currentColor"
-							><path
-								d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"
-							></path></svg
-						>
-					</a>
-				</div>
+				<a
+					href="https://ca.linkedin.com/in/nathan-dsilva"
+					target="_blank"
+				>
+					<span class="sr-only">Linkedin</span>
+					<Icon type="linkedin" />
+				</a>
+
+				<a href="mailto:expitau@gmail.com" target="_blank">
+					<span class="sr-only">Email</span>
+					<Icon type="email" />
+				</a>
+			</div>
+			<div
+				id="main-title--publickey"
+				title="GPG Public Key"
+				onclick="navigator.clipboard.writeText('770B 83C9 8A17 F25F 9F6C 595A 9F3D 8A50 BB5A BE73'); let copied = this.appendChild(document.createElement('div')); copied.classList.add('copytooltip'); copied.textContent = 'Copied to clipboard!'; setTimeout(() => this.querySelector('.copytooltip')?.remove(), 4000);"
+			>
+				<span id="main-title--publickey--name">GPG Public Key</span>
+				<Icon
+					type="key"
+					height="1rem"
+					style="transform: translateY(3px)"
+				/>
+				770B 83C9 8A17 F25F 9F6C 595A 9F3D 8A50 BB5A BE73
 			</div>
 		</div>
 		<div id="main-content" style="padding-inline: 2rem">
-			<h2>About</h2>
 			<p>
-				Hello! I'm Nathan, an experienced software developer with a
-				proven ability to write high-quality maintainable code when I
-				can, and fast solution-oriented programs when I must.
+				Hello! I'm Nathan, I build things that nobody has made before.
+				Whether in esoteric projects or technical niches, I'm happiest
+				when the problems I am tackling have never been solved. Today, I
+				specialize in infrastructure and machine learning, where these
+				types of problems arise at scale.
 			</p>
 			<p>
-				I am currently in my final term studying computational
-				mathematics at the University of Waterloo. When I'm not
-				contributing to open source or tinkering with hardware, I spend
-				time working on my many personal projects, some of which you can
-				find on <a href="https://github.com/expitau">my GitHub</a>.
+				I've recently graduated from the University of Waterloo, and I
+				am working in Toronto, Canada as a lead software developer for a
+				stealth-mode startup. When I'm not tinkering with hardware or my
+				operating system, I'm working on side projects you can find on <a
+					href="https://github.com/expitau">my GitHub</a
+				>.
 			</p>
-			<a href="/about" style="font-weight: 600; color: #d8b4fe; display: flex; align-items: center; gap: 0.3rem;">View more<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></a>
 			<br />
 			<h2>Projects</h2>
 			<div id="main-projects">
 				{
 					projects.slice(0, 3).map((project) => (
-						<CardLink href={project.data.liveUrl || project.data.url || '/projects'}>
-							<div class="main-projects-card">
+						<a href={project.data.url}>
+							<ImageCard
+								image={project.data.image}
+								style="width: 14rem; height: 18rem"
+							>
+								<div style="position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem; color: var(--text-secondary)">
+									<span>{formatDate(project.data.date)}</span>
+								</div>
 								<img
-									style="width: 100%;"
-									src={project.data.heroImage}
-									alt={project.data.title}
+									src={project.data.image}
+									style="width: 6rem; height: 6rem; object-fit: contain; margin-top: 2.5rem;"
 								/>
-								<div style="padding: 0.5rem">
+								<div style="position: absolute; bottom: 0;">
 									<h3 style="margin: 0">
 										{project.data.title}
 									</h3>
@@ -362,25 +478,55 @@ import BlogCard from "../components/BlogCard.astro";
 										{project.data.description}
 									</p>
 								</div>
-							</div>
-						</CardLink>
+							</ImageCard>
+						</a>
 					))
 				}
 			</div>
-			<a href="/projects" style="font-weight: 600; color: #d8b4fe; display: flex; align-items: center; gap: 0.3rem;">View more<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></a>
+			<a href="/projects" class="view-more">
+				View more
+				<Icon type="arrow" width="16px" height="16px" />
+			</a>
 			<br />
 			<h2>Blog</h2>
 			<div
-				id="main-blog"
-				style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem;"
+				class="blog-list"
+				style="display: flex; flex-direction: column; margin-left: 1rem; padding-top: 0.75rem; gap: 1.5rem; margin-bottom: 1.5rem;"
 			>
 				{
 					blog.slice(0, 3).map((post) => (
-						<BlogCard post={post} />
+						<a
+							href={`/blog/${post.id}/`}
+							style="text-decoration: none"
+						>
+							<div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+								<div>
+									<div style="display: flex; flex-direction: row; align-items: baseline; gap: 0.5rem;">
+										<h3 style="margin: 0;">
+											{post.data.title}
+										</h3>
+										{(post.data.tags || []).map((tag) => (
+											<Tag name={tag} />
+										))}
+									</div>
+									<p>{post.data.description}</p>
+								</div>
+								<Icon
+									type="arrow"
+									width="24px"
+									height="24px"
+									style="flex: none; color: white"
+									class="blog-arrow"
+								/>
+							</div>
+						</a>
 					))
 				}
 			</div>
-			<a href="/blog" style="font-weight: 600; color: #d8b4fe; display: flex; align-items: center; gap: 0.3rem;">Read more<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></a>
+			<a href="/blog" class="view-more">
+				View more
+				<Icon type="arrow" width="16px" height="16px" />
+			</a>
 			<br />
 			<h2>Resume</h2>
 			<p>
@@ -388,7 +534,9 @@ import BlogCard from "../components/BlogCard.astro";
 				redacted for privacy, contact me for the full version.
 			</p>
 			<div id="resume-buttons">
-				<a class="button" href="/resume/Nathan_DSilva_Resume_2024.pdf"> Download PDF </a>
+				<a class="button" href="/resume/Nathan_DSilva_Resume_2026.pdf">
+					Download PDF
+				</a>
 				<a class="button" href="/resume/index.html"> View HTML </a>
 			</div>
 		</div>

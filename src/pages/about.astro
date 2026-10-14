@@ -1,36 +1,51 @@
 ---
-import Panel from "../components/Panel.astro";
 import Layout from "../layouts/main.astro";
+import Icon from "../components/Icon.astro";
+
 import * as AboutContent from "../content/static/about.md"
 
 const { Content } = AboutContent;
 ---
 
-<Layout title="About">
+<Layout title="Blog">
     <style>
-        main {
-            padding-top: 4rem;
-            padding-bottom: 6rem;
+        .backarrow {
+            color: var(--text-secondary);
+            text-decoration: none;
         }
-        img {
-            width: 100%;
+
+        .backarrow:hover {
+            color: var(--text);
+            transition:
+                color 0.2s ease-in-out,
+                transform 0.2s ease-in-out;
         }
-        h1 {
-            text-align: center;
+
+        .backarrow svg {
+            transition: transform 0.2s ease-in-out;
         }
-        p {
-            margin-bottom: 1rem;
+
+        .backarrow:hover svg {
+            transform: translateX(-3px);
         }
     </style>
+    
     <a
         href="/"
-        style="display: flex; flex-direction: row; align-items: center; gap: 1rem;"
-        ><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>
-        Back home</a
+        class="backarrow"
+        style="display: flex; flex-direction: row; align-items: center; gap: 1rem; position: fixed; top: 2rem; left: 3rem;"
     >
-    <Panel style="padding-inline: 8%; margin-top: 2rem; width: 100%;">
+        <Icon type="arrowback" width="18px" height="18px" />
+        Home
+    </a>
+    <div
+        style="width: 90%; max-width: 50rem; padding-bottom: 12rem; padding-top: 6rem"
+    >
+        <h1 style="text-align: center; margin-bottom: 0">About me</h1>
+        <br />
         <article>
             <Content />
         </article>
-    </Panel>
+        <br />
+    </div>
 </Layout>

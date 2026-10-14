@@ -2,26 +2,29 @@
   "name": "astro-blog-v2",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.22.0",
+  "packageManager": "pnpm@12.11.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "dev:resume": "live-server --port=5001 --open=resume/src --watch=resume",
+    "dev:resume": "serve resume/src",
     "build:resume": "cd resume && node build.cjs"
   },
   "dependencies": {
-    "astro": "^5.15.7",
-    "express": "^5.1.0",
-    "js-yaml": "^4.1.1",
-    "pdf-lib": "^1.17.1",
-    "rehype-mathjax": "^7.1.0",
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@fontsource-variable/inter": "^5.3.0",
+    "astro": "^6.4.8",
+    "express": "^5.3.0",
+    "js-yaml": "^4.3.2",
+    "katex": "^0.17.0",
+    "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "puppeteer": "^24.30.0"
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^25.13.0",
+    "serve": "^14.2.6"
   }
 }

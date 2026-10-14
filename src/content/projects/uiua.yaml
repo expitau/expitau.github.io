@@ -1,5 +1,5 @@
+# 'Developed first implementation of SHA256 and "Bad Apple" in Uiua, a purely functional esoteric programming language. Involved custom compression that reduced the data size of the original video by over 99% with fourier transforms and run-length encodings.'
 title: 'Uiua Scripts'
 description: 'Implemented SHA256 and "Bad Apple" in Uiua'
-longDescription: 'Developed first implementation of SHA256 and "Bad Apple" in Uiua, a purely functional esoteric programming language. Involved custom compression that reduced the data size of the original video by over 99% with fourier transforms and run-length encodings.'
-heroImage: '/projects/BadApple.jpg'
-priority: 10
+image: '/projects/BadApple.jpg'
+date: 'Jan 20 2024'

@@ -1,8 +1,8 @@
+#  'A web scraper and UI for the University of Waterloo job board. Scrapes job postings and provides a UI for efficiently filtering and shortlisting them. Written in Vue and Node.js'
 title: 'WaterlooWorms'
 description: 'Web scraper and UI for the University of Waterloo job board'
-longDescription: 'A web scraper and UI for the University of Waterloo job board. Scrapes job postings and provides a UI for efficiently filtering and shortlisting them. Written in Vue and Node.js'
-pubDate: 'Sep 18 2022'
-heroImage: '/projects/WaterlooWorms.jpg'
-liveUrl: 'https://expitau.github.io/WaterlooWorms'
-url: 'https://github.com/expitau/WaterlooWorms'
-priority: 3
+date: 'Sep 18 2022'
+image: '/projects/WaterlooWorms.png'
+url: 'https://expitau.github.io/WaterlooWorms'
+github: 'https://github.com/expitau/WaterlooWorms'
+priority: 6

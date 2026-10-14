@@ -1,7 +1,7 @@
 ---
 title: "Factorials and circles"
-description: "The nature of math"
-pubDate: 'Jun 30 2024'
+description: "How graphing the factorial function helped me discover calculus"
+date: 'Jun 30 2024'
 tags: ['lecture', 'math']
 ---
 
